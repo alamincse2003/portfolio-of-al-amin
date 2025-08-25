@@ -84,12 +84,13 @@ export default function Navbar() {
           ))}
 
           {/* Mobile Dark Mode Toggle */}
-          <button
+          <DarkModeToggler />
+          {/* <button
             className="m-4 text-2xl text-gray-700 dark:text-gray-200"
             onClick={() => setDarkMode(!darkMode)}
           >
             {darkMode ? <FiSun /> : <FiMoon />}
-          </button>
+          </button> */}
         </motion.div>
       )}
     </motion.nav>
