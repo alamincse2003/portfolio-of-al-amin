@@ -104,7 +104,7 @@ const Contact = () => {
           {/* Contact Form */}
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 sm:p-8 space-y-4"

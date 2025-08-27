@@ -25,7 +25,9 @@ export default function Skills() {
                 >
                   <div className="flex items-center gap-3 mb-2">
                     {skill.icon}
-                    <span className="font-medium">{skill.name}</span>
+                    <span className="font-medium dark:text-gray-100">
+                      {skill.name}
+                    </span>
                   </div>
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 relative overflow-hidden">
                     <motion.div
@@ -56,7 +58,9 @@ export default function Skills() {
                 >
                   <div className="flex items-center gap-3 mb-2">
                     {skill.icon}
-                    <span className="font-medium">{skill.name}</span>
+                    <span className="font-medium dark:text-gray-100">
+                      {skill.name}
+                    </span>
                   </div>
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 relative overflow-hidden">
                     <motion.div
@@ -87,7 +91,9 @@ export default function Skills() {
                 >
                   <div className="flex items-center gap-3 mb-2">
                     {skill.icon}
-                    <span className="font-medium">{skill.name}</span>
+                    <span className="font-medium dark:text-gray-100">
+                      {skill.name}
+                    </span>
                   </div>
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 relative overflow-hidden">
                     <motion.div

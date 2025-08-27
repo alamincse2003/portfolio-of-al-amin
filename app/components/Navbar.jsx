@@ -49,12 +49,6 @@ export default function Navbar() {
 
           {/* Dark/Light Toggle */}
           <DarkModeToggler />
-          {/* <button
-            className="ml-4 text-xl text-gray-700 dark:text-gray-200"
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? <FiSun /> : <FiMoon />}
-          </button> */}
         </div>
 
         {/* Mobile Menu Button */}
