@@ -9,7 +9,7 @@ export default function Experience() {
         {/* Toggle Button */}
 
         {/* Section Title */}
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
+        <h2 className="text-3xl underline decoration-wavy dark:decoration-indigo-400 decoration-indigo-600 font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
           Experience
         </h2>
 

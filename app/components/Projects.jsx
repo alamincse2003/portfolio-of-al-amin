@@ -25,7 +25,7 @@ const Projects = () => {
       id="projects"
       className="py-10 px-6 md:px-20 bg-gray-50 dark:bg-gray-900"
     >
-      <h2 className="text-4xl font-bold mb-6 text-gray-800 dark:text-white text-center">
+      <h2 className="text-4xl underline decoration-wavy dark:decoration-indigo-400 decoration-indigo-600 font-bold mb-6 text-gray-800 dark:text-white text-center">
         My Projects
       </h2>
       <p className="text-gray-600 dark:text-gray-300 mb-10 text-center">

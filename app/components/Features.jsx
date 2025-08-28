@@ -9,7 +9,7 @@ const Features = () => {
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section Title */}
         <motion.h2
-          className="text-3xl font-bold text-center text-gray-900 dark:text-white"
+          className="text-3xl underline decoration-wavy dark:decoration-indigo-400 decoration-indigo-600 font-bold text-center text-gray-900 dark:text-white"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
