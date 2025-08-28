@@ -1,32 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
+import { experiences } from "../data/experiences";
 
 export default function Experience() {
-  const experiences = [
-    {
-      role: "Frontend Developer Intern",
-      company: "NexaBD",
-      duration: "Jan 2025 - Present",
-      details: [
-        "Developed and maintained responsive web interfaces using HTML, Tailwind CSS, and JavaScript.",
-        "Improved site performance through optimized CSS/JS practices.",
-        "Collaborated with the team to ensure cross-browser compatibility.",
-      ],
-    },
-    {
-      role: "Frontend Developer (Remote)",
-      company: "Startup Company",
-      duration: "Jul 2024 - Dec 2024",
-      details: [
-        "Updated content, managed internal linking, and maintained websites.",
-        "Worked with HTML, Tailwind CSS, and JavaScript for frontend tasks.",
-        "Contributed to website research and SEO improvements.",
-      ],
-    },
-  ];
-
   return (
-    <section id="experiences" className="py-16 bg-gray-50 dark:bg-gray-900">
+    <section id="experiences" className="py-10 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-5xl mx-auto px-6">
         {/* Toggle Button */}
 
@@ -54,8 +32,8 @@ export default function Experience() {
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                   {exp.role}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {exp.company} | <span className="italic">{exp.duration}</span>
+                <p className="text-gray-600 dark:text-gray-300 italic">
+                  {exp.company} | <span>{exp.duration}</span>
                 </p>
                 <ul className="list-disc list-inside mt-3 text-gray-700 dark:text-gray-300 space-y-1">
                   {exp.details.map((item, i) => (

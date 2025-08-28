@@ -33,7 +33,7 @@ const About = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
             About Me
           </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6 sm:text-justify">
             Hi, I’m{" "}
             <span className="font-semibold text-indigo-600 dark:text-indigo-400">
               Al Amin

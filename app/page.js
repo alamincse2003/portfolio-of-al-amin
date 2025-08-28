@@ -1,4 +1,5 @@
 import About from "./components/About";
+import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Eductaion from "./components/Eductaion";
 import Experiences from "./components/Experiences";
@@ -13,10 +14,11 @@ export default function Home() {
       <Hero />
       <Features />
       <About />
-      <Projects />
       <Skills />
+      <Projects />
       <Experiences />
       <Eductaion />
+      <Certifications />
       <Contact />
     </>
   );

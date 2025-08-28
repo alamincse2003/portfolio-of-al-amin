@@ -56,7 +56,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="flex-1"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl  font-bold pt-4 lg:mb-4">
             Hi, I&apos;m{" "}
             <span className="text-indigo-300 dark:text-indigo-400">
               Al Amin
@@ -69,11 +69,6 @@ const Hero = () => {
           <p className="mb-6 text-gray-200 dark:text-gray-300">
             I build modern, responsive web applications with clean code and
             smooth UI.
-            {/* I’m a Frontend Developer with hands-on experience in HTML, CSS,
-            JavaScript, React, and Next.js. I have worked on multiple projects .
-            I have one year experience . I’m passionate about crafting clean,
-            modern, and responsive user interfaces. I'm always eager to learn
-            and grow while contributing to impactful web experiences. */}
           </p>
           <div className="flex gap-4 flex-wrap">
             <a

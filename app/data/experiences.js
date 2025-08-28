@@ -1,6 +1,6 @@
 export const experiences = [
   {
-    role: "Frontend Developer Intern",
+    role: "Junior Web Developer",
     company: "NexaBD",
     duration: "Jan 2025 - Present",
     details: [
@@ -10,8 +10,8 @@ export const experiences = [
     ],
   },
   {
-    role: "Frontend Developer (Remote)",
-    company: "Startup Company",
+    role: "Junior Frontend Developer (Intern)",
+    company: "Zariq Ltd.",
     duration: "Jul 2024 - Dec 2024",
     details: [
       "Updated content, managed internal linking, and maintained websites.",

@@ -1,38 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code, Monitor, Zap, Palette } from "lucide-react";
-
-const features = [
-  {
-    icon: <Code className="w-8 h-8 text-indigo-500" />,
-    title: "Clean Code",
-    description:
-      "I write clean, maintainable, and scalable code following modern best practices.",
-  },
-  {
-    icon: <Monitor className="w-8 h-8 text-indigo-500" />,
-    title: "Responsive Design",
-    description:
-      "Websites that look great on desktop, tablet, and mobile devices.",
-  },
-  {
-    icon: <Palette className="w-8 h-8 text-indigo-500" />,
-    title: "Modern UI/UX",
-    description:
-      "Beautiful, user-friendly designs with attention to detail and usability.",
-  },
-  {
-    icon: <Zap className="w-8 h-8 text-indigo-500" />,
-    title: "Performance",
-    description:
-      "Optimized for speed, SEO, and smooth user experience across platforms.",
-  },
-];
+import { features } from "../data/features";
 
 const Features = () => {
   return (
-    <section className="py-20 bg-gray-50 dark:bg-slate-900">
+    <section className="py-10 bg-gray-50 dark:bg-slate-900">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section Title */}
         <motion.h2
@@ -45,7 +18,7 @@ const Features = () => {
           What I Do
         </motion.h2>
         <motion.p
-          className="mt-4 text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+          className="mt-4 text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto italic"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
