@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { experiences } from "../data/experiences";
-
+import { FaCertificate } from "react-icons/fa";
 export default function Experience() {
   return (
     <section id="experiences" className="py-10 bg-gray-50 dark:bg-gray-900">
@@ -25,7 +25,12 @@ export default function Experience() {
               viewport={{ once: true }}
             >
               {/* Dot */}
-              <span className="absolute -left-3 top-2 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white dark:border-gray-900 shadow"></span>
+              {/* <span className="absolute -left-3 top-2 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white dark:border-gray-900 shadow">
+                <FaCertificate className="text-sm" />
+              </span> */}
+              <span className="absolute -left-4 flex items-center justify-center w-8 h-8 bg-blue-500 text-white rounded-full shadow-md">
+                <FaCertificate className="text-sm" />
+              </span>
 
               {/* Card */}
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
