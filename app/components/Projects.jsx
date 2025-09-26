@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -66,10 +65,20 @@ const Projects = () => {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover rounded-lg h-full w-full transition-all duration-1000 ease-in-out   object-top hover:object-bottom "
+                  className="object-cover   rounded-lg h-full w-full transition-all duration-4000 ease-in-out   object-top animate-scrollImage"
                 />
               </div>
+              {/* new code  */}
+              {/* <div className="relative w-full h-56 overflow-hidden rounded-lg">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover h-full w-full object-top transition-all duration-[4000ms] ease-in-out animate-scrollImage"
+                />
+              </div> */}
 
+              {/* new code  */}
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">
                   {project.title}

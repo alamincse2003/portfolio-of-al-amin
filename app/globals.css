@@ -1,2 +1,15 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes scrollImage {
+  0% {
+    object-position: top;
+  }
+  100% {
+    object-position: bottom;
+  }
+}
+
+.animate-scrollImage {
+  animation: scrollImage 6s linear infinite alternate;
+}
