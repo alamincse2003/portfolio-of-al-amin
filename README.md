@@ -23,7 +23,7 @@ It showcases my skills, projects, experience, and achievements as a **Frontend D
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - Tailwind CSS
 - ReactJS
