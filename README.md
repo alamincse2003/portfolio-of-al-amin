@@ -11,8 +11,6 @@ It showcases my skills, projects, experience, and achievements as a **Frontend D
 
 ---
 
----
-
 ## Features
 
 ✅ Responsive design (mobile-first)  
@@ -25,24 +23,13 @@ It showcases my skills, projects, experience, and achievements as a **Frontend D
 
 ---
 
-## Sections Overview
-
-- **Home:** Hero section with intro and CTA
-- **About:** Short bio and goals
-- **Skills:** Categorized list of frontend, backend & tools
-- **Projects:** Showcase of recent works with live/demo links
-- **Experience:** Company-wise work experience
-- **Education:** Academic background
-- **Certifications / Achievements:** Courses & awards
-- **Contact:** EmailJS form with validation
-- **Footer:** Social links + Back-to-top button
-
----
-
 ## 🛠️ Technologies Used
 
-- HTML5
+- Tailwind CSS
+- ReactJS
+- NextJS
+- Framer Motion
 
 ---
 
-## 📁 Project Structure
+![alt text](image.png)
