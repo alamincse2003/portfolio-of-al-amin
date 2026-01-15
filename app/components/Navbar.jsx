@@ -26,22 +26,22 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-gray-900 shadow-md transition-colors"
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="max-w-6xl w-full mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <a
           href="#home"
-          className="text-2xl font-bold text-gray-800 dark:text-gray-200 transition-colors"
+          className="text-2xl font-bold text-gray-800 dark:text-gray-200 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
         >
           Al Amin
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden lg:flex items-center space-x-8">
           {links.map((link, index) => (
             <a
               key={index}
               href={link.href}
-              className="relative font-medium text-gray-800 dark:text-gray-200 transition-colors
+              className="relative font-medium text-gray-800 dark:text-gray-200 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400
               after:content-[''] after:block after:w-0 after:h-[2px] after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
             >
               {link.name}
@@ -53,12 +53,16 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-2xl text-gray-800 dark:text-gray-200"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <FiX /> : <FiMenu />}
-        </button>
+        <div className="flex items-center gap-4 lg:hidden">
+          <DarkModeToggler />
+          <button
+            className="text-2xl text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

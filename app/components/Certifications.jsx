@@ -6,7 +6,7 @@ import { certifications } from "../data/certifications";
 const Certifications = () => {
   return (
     <section id="certifications" className="py-10 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <h2 className="lg:text-3xl text-2xl underline decoration-wavy dark:decoration-indigo-400 decoration-indigo-600 font-bold text-center dark:text-gray-100 mb-14">
           Certifications & Achievements
         </h2>

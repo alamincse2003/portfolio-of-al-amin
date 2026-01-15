@@ -5,7 +5,7 @@ import { FaCertificate } from "react-icons/fa";
 export default function Experience() {
   return (
     <section id="experiences" className="py-10 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         {/* Toggle Button */}
 
         {/* Section Title */}
@@ -14,7 +14,7 @@ export default function Experience() {
         </h2>
 
         {/* Timeline */}
-        <div className="relative border-l-2 border-indigo-400 ml-6 space-y-10">
+        <div className="  relative border-l-2 border-indigo-400   space-y-10">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}

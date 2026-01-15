@@ -6,7 +6,7 @@ const DarkModeToggler = () => {
   const { darkMode, setDarkMode } = useDarkMode();
   return (
     <button
-      className="ml-4 text-xl text-gray-700 dark:text-gray-200"
+      className="ml-4 text-xl text-gray-700 dark:text-gray-200 cursor-pointer"
       onClick={() => setDarkMode(!darkMode)}
     >
       {darkMode ? <FiMoon /> : <FiSun />}

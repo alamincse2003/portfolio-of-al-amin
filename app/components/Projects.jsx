@@ -22,7 +22,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-10 px-6 md:px-20 bg-gray-50 dark:bg-gray-900"
+      className=" py-10 px-6 md:px-20 bg-gray-50 dark:bg-gray-900"
     >
       <h2 className="text-4xl underline decoration-wavy dark:decoration-indigo-400 decoration-indigo-600 font-bold mb-6 text-gray-800 dark:text-white text-center">
         My Projects
@@ -49,7 +49,7 @@ const Projects = () => {
       </div>
 
       {/* Project Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
         <AnimatePresence>
           {visibleProjects.map((project) => (
             <motion.div

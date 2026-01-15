@@ -8,7 +8,7 @@ const About = () => {
       id="about"
       className="bg-white dark:bg-gray-900 py-20 px-6 md:px-16 lg:px-24"
     >
-      <div className="container mx-auto grid md:grid-cols-2 items-center gap-12">
+      <div className="max-w-6xl px-6 mx-auto grid md:grid-cols-2 items-center gap-12">
         {/* Left Side - Image */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -20,7 +20,7 @@ const About = () => {
             src="/images/hero/alamin.jpg"
             alt="About Me"
             fill
-            className="rounded-full shadow-lg border-4 border-white dark:border-gray-300 object-cover"
+            className="rounded-full shadow-lg border-4 border-indigo-600  dark:border-gray-300 object-cover"
           />
         </motion.div>
 
