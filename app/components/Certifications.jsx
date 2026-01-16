@@ -11,7 +11,7 @@ const Certifications = () => {
           Certifications & Achievements
         </h2>
 
-        <div className="relative border-l-2 border-blue-400 dark:border-blue-500">
+        <div className="  border-blue-400 dark:border-blue-500">
           {certifications.map((cert, index) => (
             <motion.div
               key={cert.id}
@@ -19,13 +19,8 @@ const Certifications = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="mb-10 ml-8"
+              className="mb-6"
             >
-              {/* Left Circle Icon */}
-              <span className="absolute -left-4 flex items-center justify-center w-8 h-8 bg-blue-500 text-white rounded-full shadow-md">
-                <FaCertificate className="text-sm" />
-              </span>
-
               {/* Card Content */}
               <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow hover:shadow-lg transition">
                 <h3 className="text-lg font-semibold dark:text-gray-100">

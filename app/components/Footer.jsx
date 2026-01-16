@@ -22,7 +22,16 @@ const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
+  const links = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Skills", href: "#skills" },
+    { name: "Experiences", href: "#experiences" },
+    { name: "Education", href: "#education" },
+    { name: "Certifications", href: "#certifications" },
+    { name: "Contact", href: "#contact" },
+  ];
   return (
     <footer className="bg-gray-100 dark:bg-gray-900 py-10 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
@@ -57,7 +66,6 @@ const Footer = () => {
           </a>
         </motion.div>
 
-        {/* Navigation Links */}
         <motion.ul
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,48 +73,17 @@ const Footer = () => {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 sm:gap-6 text-gray-700 dark:text-gray-300 font-medium mb-6"
         >
-          <li>
-            <a href="#home" className="hover:text-indigo-500">
-              Home
+          {links.map((link, index) => (
+            <a
+              key={index}
+              href={link.href}
+              className="relative font-medium text-gray-800 dark:text-gray-200 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400
+              after:content-[''] after:block after:w-0 after:h-[2px] after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              {link.name}
             </a>
-          </li>
-          <li>
-            <a href="#about" className="hover:text-indigo-500">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#projects" className="hover:text-indigo-500">
-              Projects
-            </a>
-          </li>
-          <li>
-            <a href="#skills" className="hover:text-indigo-500">
-              Skills
-            </a>
-          </li>
-          <li>
-            <a href="#experiences" className="hover:text-indigo-500">
-              Experiences
-            </a>
-          </li>
-          <li>
-            <a href="#education" className="hover:text-indigo-500">
-              Education
-            </a>
-          </li>
-          <li>
-            <a href="#certifications" className="hover:text-indigo-500">
-              Certifications
-            </a>
-          </li>
-          <li>
-            <a href="#contact" className="hover:text-indigo-500">
-              Contact
-            </a>
-          </li>
+          ))}
         </motion.ul>
-
         {/* Copyright */}
         <motion.p
           className="text-sm sm:text-base text-gray-600 dark:text-gray-400"

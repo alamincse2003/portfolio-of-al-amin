@@ -48,7 +48,7 @@ const Hero = () => {
       id="home"
       className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-gray-900 dark:to-gray-800 text-white px-6 md:px-20"
     >
-      <div className="max-w-6xl px-6 w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+      <div className="max-w-6xl px-6 w-full mx-auto flex flex-col lg:flex-row md:flex-col items-center justify-between gap-12">
         {/* Left Side: Text */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,7 +56,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="flex-1 text-center md:text-left"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 lg:mt-0 mt-4">
             Hi, I&apos;m{" "}
             <span className="text-indigo-300 dark:text-indigo-400">
               Al Amin

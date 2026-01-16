@@ -10,7 +10,7 @@ export default function Skills() {
           Skills
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {/* Frontend */}
           <div>
             <h3 className="text-2xl font-semibold mb-6 text-indigo-600">
@@ -45,7 +45,7 @@ export default function Skills() {
           </div>
 
           {/* Backend */}
-          <div>
+          {/* <div>
             <h3 className="text-2xl font-semibold mb-6 text-indigo-600">
               Backend
             </h3>
@@ -75,7 +75,7 @@ export default function Skills() {
                 </motion.div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Tools */}
           <div>

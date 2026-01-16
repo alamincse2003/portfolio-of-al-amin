@@ -1,4 +1,11 @@
-import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaTools } from "react-icons/fa";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaReact,
+  FaNodeJs,
+  FaTools,
+  FaBootstrap,
+} from "react-icons/fa";
 import {
   SiTailwindcss,
   SiJavascript,
@@ -6,6 +13,9 @@ import {
   SiMysql,
   SiGit,
   SiFigma,
+  SiChakraui,
+  SiTypescript,
+  SiNextdotjs,
 } from "react-icons/si";
 export const skills = {
   frontend: [
@@ -20,9 +30,19 @@ export const skills = {
       level: "75%",
     },
     {
+      name: "Bootstrap",
+      icon: <FaBootstrap className="text-purple-600" />,
+      level: "78%",
+    },
+    {
       name: "Tailwind CSS",
       icon: <SiTailwindcss className="text-sky-400" />,
-      level: "70%",
+      level: "75%",
+    },
+    {
+      name: "Chakra UI",
+      icon: <SiChakraui className="text-teal-400" />,
+      level: "80%",
     },
     {
       name: "JavaScript",
@@ -32,7 +52,17 @@ export const skills = {
     {
       name: "React",
       icon: <FaReact className="text-cyan-400" />,
-      level: "75%",
+      level: "70%",
+    },
+    {
+      name: "Typescript",
+      icon: <SiTypescript className="text-blue-600" />,
+      level: "50%",
+    },
+    {
+      name: "Nextjs",
+      icon: <SiNextdotjs className="text-black dark:text-white" />,
+      level: "55%",
     },
   ],
   backend: [
@@ -56,12 +86,12 @@ export const skills = {
     {
       name: "Git & GitHub",
       icon: <SiGit className="text-orange-600" />,
-      level: "75%",
+      level: "55%",
     },
     {
       name: "Figma",
       icon: <SiFigma className="text-pink-500" />,
-      level: "70%",
+      level: "60%",
     },
     {
       name: "Other Tools",
