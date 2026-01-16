@@ -6,32 +6,21 @@ export default function Experience() {
   return (
     <section id="experiences" className="py-10 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Toggle Button */}
-
         {/* Section Title */}
         <h2 className="text-3xl underline decoration-wavy dark:decoration-indigo-400 decoration-indigo-600 font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
           Experience
         </h2>
 
         {/* Timeline */}
-        <div className="  relative border-l-2 border-indigo-400   space-y-10">
+        <div className="space-y-8">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              className="relative pl-6"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              {/* Dot */}
-              {/* <span className="absolute -left-3 top-2 w-6 h-6 rounded-full bg-indigo-500 border-4 border-white dark:border-gray-900 shadow">
-                <FaCertificate className="text-sm" />
-              </span> */}
-              <span className="absolute -left-4 flex items-center justify-center w-8 h-8 bg-blue-500 text-white rounded-full shadow-md">
-                <FaCertificate className="text-sm" />
-              </span>
-
               {/* Card */}
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
