@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { ArrowRight, Mail } from "lucide-react";
 
 const roles = [
   "Frontend Developer",
@@ -46,43 +47,88 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-gray-900 dark:to-gray-800 text-white px-6 md:px-20"
+      className="relative min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 px-6 md:px-20 overflow-hidden"
     >
-      <div className="max-w-6xl px-6 w-full mx-auto flex flex-col lg:flex-row md:flex-col items-center justify-between gap-12">
+      {/* Background Pattern - Subtle Dots */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(0_0_0/0.05)_1px,transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,rgb(255_255_255/0.05)_1px,transparent_0)] [background-size:32px_32px]"></div>
+
+      {/* Gradient Accent */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl"></div>
+
+      <div className="relative max-w-6xl px-6 w-full mx-auto flex flex-col lg:flex-row md:flex-col items-center justify-between gap-12">
         {/* Left Side: Text */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex-1 text-center md:text-left"
+          className="flex-1 text-center md:text-left z-10"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 lg:mt-0 mt-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="inline-block mb-4 px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-full"
+          >
+            <span className="text-sm font-medium text-indigo-700 dark:text-indigo-300">
+              👋 Welcome to my portfolio
+            </span>
+          </motion.div>
+
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 lg:mt-0 mt-2 text-zinc-900 dark:text-zinc-100">
             Hi, I&apos;m{" "}
-            <span className="text-indigo-300 dark:text-indigo-400">
+            <span className="text-indigo-600 dark:text-indigo-400 relative">
               Al Amin
+              <svg
+                className="absolute -bottom-2 left-0 w-full"
+                height="8"
+                viewBox="0 0 200 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 5C50 2 150 2 198 5"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  className="text-indigo-600 dark:text-indigo-400 opacity-40"
+                />
+              </svg>
             </span>
           </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold min-h-[3rem] mb-6">
-            {displayText}
-            <span className="border-r-2 border-white ml-1 animate-pulse"></span>
+
+          <h2 className="text-2xl md:text-3xl font-semibold min-h-[3rem] mb-6 text-zinc-700 dark:text-zinc-300">
+            <span className="text-indigo-600 dark:text-indigo-400">
+              {displayText}
+            </span>
+            <span className="border-r-2 border-indigo-600 dark:border-indigo-400 ml-1 animate-pulse"></span>
           </h2>
-          <p className="text-lg mb-8 text-gray-200 dark:text-gray-300 max-w-xl">
+
+          <p className="text-lg mb-8 text-zinc-600 dark:text-zinc-400 max-w-xl leading-relaxed">
             I build modern, responsive web applications with clean code and
-            smooth UI.
+            smooth UI. Passionate about creating exceptional user experiences.
           </p>
+
           <div className="flex gap-4 flex-wrap justify-center md:justify-start">
-            <a
+            <motion.a
               href="#projects"
-              className="px-8 py-3 bg-indigo-600   dark:bg-indigo-400 dark:hover:bg-indigo-300 rounded-lg font-medium   shadow-lg hover:shadow-xl transition-transform transform hover:scale-105"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group inline-flex items-center gap-2 px-8 py-3 bg-zinc-900 dark:bg-indigo-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-zinc-800 dark:hover:bg-indigo-500"
             >
               View Projects
-            </a>
-            <a
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+
+            <motion.a
               href="#contact"
-              className="px-8 py-3 border-2 border-white     dark:hover:bg-indigo-400 dark:hover:text-gray-900 rounded-lg font-medium  shadow-lg hover:shadow-xl transition-transform transform hover:scale-105"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group inline-flex items-center gap-2 px-8 py-3 border-2 border-zinc-900 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-800 dark:hover:border-zinc-600"
             >
+              <Mail className="w-4 h-4" />
               Contact Me
-            </a>
+            </motion.a>
           </div>
         </motion.div>
 
@@ -91,17 +137,30 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex-1 flex justify-center md:justify-end"
+          className="flex-1 flex justify-center md:justify-end z-10"
         >
-          <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96"
+          >
+            {/* Glow Effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-20 blur-2xl animate-pulse"></div>
+
             <Image
               src="/images/hero/alamin.jpg"
               alt="Al Amin"
               fill
-              className="rounded-full object-cover shadow-2xl border-4 border-white dark:border-gray-300"
+              className="rounded-full object-cover shadow-2xl border-4 border-zinc-200 dark:border-zinc-800 relative z-10"
               priority
             />
-          </div>
+
+            {/* Decorative Ring */}
+            <div
+              className="absolute inset-0 rounded-full border-2 border-indigo-500/20 dark:border-indigo-400/20 animate-ping"
+              style={{ animationDuration: "3s" }}
+            ></div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
