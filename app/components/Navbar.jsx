@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import DarkModeToggler from "./DarkModeToggler";
 
@@ -24,13 +24,13 @@ export default function Navbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-gray-900 shadow-md transition-colors"
+      className="fixed top-0 left-0 w-full z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-sm shadow-sm border-b border-zinc-200 dark:border-zinc-800 transition-colors"
     >
       <div className="max-w-6xl w-full mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <a
           href="#home"
-          className="text-2xl font-bold text-gray-800 dark:text-gray-200 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
+          className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
         >
           Al Amin
         </a>
@@ -41,8 +41,8 @@ export default function Navbar() {
             <a
               key={index}
               href={link.href}
-              className="relative font-medium text-gray-800 dark:text-gray-200 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400
-              after:content-[''] after:block after:w-0 after:h-[2px] after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full"
+              className="relative font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400
+              after:content-[''] after:block after:w-0 after:h-[2px] after:bg-indigo-600 dark:after:bg-indigo-400 after:transition-all after:duration-300 hover:after:w-full"
             >
               {link.name}
             </a>
@@ -56,7 +56,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4 lg:hidden">
           <DarkModeToggler />
           <button
-            className="text-2xl text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            className="text-2xl text-zinc-800 dark:text-zinc-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -66,34 +66,31 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="md:hidden bg-white dark:bg-gray-900 shadow-md"
-        >
-          {links.map((link, index) => (
-            <a
-              key={index}
-              href={link.href}
-              className="block px-6 py-3 text-gray-800 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
-
-          {/* Mobile Dark Mode Toggle */}
-          <DarkModeToggler />
-          {/* <button
-            className="m-4 text-2xl text-gray-700 dark:text-gray-200"
-            onClick={() => setDarkMode(!darkMode)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 shadow-lg overflow-hidden"
           >
-            {darkMode ? <FiSun /> : <FiMoon />}
-          </button> */}
-        </motion.div>
-      )}
+            {links.map((link, index) => (
+              <motion.a
+                key={index}
+                href={link.href}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className="block px-6 py-3 text-zinc-800 dark:text-zinc-200 hover:bg-indigo-50 dark:hover:bg-zinc-900 hover:text-indigo-600 dark:hover:text-indigo-400 transition border-l-4 border-transparent hover:border-indigo-600"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

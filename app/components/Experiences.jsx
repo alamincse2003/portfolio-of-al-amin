@@ -1,13 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
 import { experiences } from "../data/experiences";
-import { FaCertificate } from "react-icons/fa";
+import { Briefcase } from "lucide-react";
+
 export default function Experience() {
   return (
-    <section id="experiences" className="py-10 bg-gray-50 dark:bg-gray-900">
+    <section id="experiences" className="py-16 bg-white dark:bg-zinc-900">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Title */}
-        <h2 className="text-3xl underline decoration-wavy dark:decoration-indigo-400 decoration-indigo-600 font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
+        <h2 className="text-3xl font-bold text-center mb-12 text-zinc-900 dark:text-zinc-100">
           Experience
         </h2>
 
@@ -18,18 +19,25 @@ export default function Experience() {
               key={index}
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
               {/* Card */}
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                  {exp.role}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 italic">
-                  {exp.company} | <span>{exp.duration}</span>
-                </p>
-                <ul className="list-disc list-inside mt-3 text-gray-700 dark:text-gray-300 space-y-1">
+              <div className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-sm p-6 hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                    <Briefcase className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+                      {exp.role}
+                    </h3>
+                    <p className="text-zinc-600 dark:text-zinc-400 italic">
+                      {exp.company} | <span>{exp.duration}</span>
+                    </p>
+                  </div>
+                </div>
+                <ul className="list-disc list-inside mt-3 text-zinc-700 dark:text-zinc-300 space-y-1 ml-2">
                   {exp.details.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}

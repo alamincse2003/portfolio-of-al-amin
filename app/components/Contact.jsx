@@ -41,7 +41,7 @@ const Contact = () => {
           email: formData.email,
           message: formData.message,
         },
-        "MjKU8ciwz84K1pqwB"
+        "MjKU8ciwz84K1pqwB",
       )
       .then(() => {
         Swal.fire({
@@ -63,9 +63,9 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="lg:py-10 py-0 bg-gray-50 dark:bg-gray-900">
+    <section id="contact" className="py-16 bg-zinc-50 dark:bg-zinc-950">
       <div className="max-w-6xl mx-auto px-6 sm:px-6 lg:px-6">
-        <h2 className="text-3xl underline decoration-wavy dark:decoration-indigo-400 decoration-indigo-600 sm:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-zinc-900 dark:text-zinc-100">
           Contact
         </h2>
 
@@ -74,28 +74,35 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+            <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
               Get in Touch
             </h3>
-            <p className="text-gray-700 dark:text-gray-300">
-              I’m open to opportunities and collaborations. Feel free to contact
+            <p className="text-zinc-700 dark:text-zinc-300">
+              I'm open to opportunities and collaborations. Feel free to contact
               me using the details below or send a message through the form.
             </p>
 
             <div className="space-y-4">
-              <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                <FaEnvelope className="w-5 h-5 text-indigo-500" />
+              <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
+                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                  <FaEnvelope className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                </div>
                 <span>mdalamincse2003@gmail.com</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                <FaPhone className="w-5 h-5 text-indigo-500" />
+              <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
+                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                  <FaPhone className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                </div>
                 <span>+880 1751 492367</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                <FaMapMarkerAlt className="w-5 h-5 text-indigo-500" />
+              <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
+                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                  <FaMapMarkerAlt className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                </div>
                 <span>Dhaka, Bangladesh</span>
               </div>
             </div>
@@ -104,10 +111,11 @@ const Contact = () => {
           {/* Contact Form */}
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 sm:p-8 space-y-4"
+            className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm p-6 sm:p-8 space-y-4"
           >
             {status && (
               <p
@@ -127,7 +135,7 @@ const Contact = () => {
                 placeholder="Your Name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                className="w-full p-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-500 dark:placeholder-zinc-400"
               />
               <input
                 type="email"
@@ -135,7 +143,7 @@ const Contact = () => {
                 placeholder="Your Email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                className="w-full p-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-500 dark:placeholder-zinc-400"
               />
             </div>
 
@@ -145,11 +153,11 @@ const Contact = () => {
               rows={5}
               value={formData.message}
               onChange={handleChange}
-              className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+              className="w-full p-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-500 dark:placeholder-zinc-400"
             />
             <button
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
+              className="w-full bg-zinc-900 dark:bg-indigo-600 hover:bg-zinc-800 dark:hover:bg-indigo-500 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
             >
               Send Message
             </button>
