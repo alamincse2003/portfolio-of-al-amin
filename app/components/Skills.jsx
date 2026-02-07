@@ -4,23 +4,23 @@ import { skills } from "../data/skills";
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-16 bg-white dark:bg-zinc-900">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12 text-zinc-900 dark:text-zinc-100">
+    <section id="skills" className="py-12 sm:py-16 bg-white dark:bg-zinc-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-zinc-900 dark:text-zinc-100">
           Skills
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Frontend */}
           <div>
-            <h3 className="text-2xl font-semibold mb-6 text-indigo-600 dark:text-indigo-400">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-indigo-600 dark:text-indigo-400">
               Frontend
             </h3>
-            <div className="grid gap-6">
+            <div className="grid gap-4 sm:gap-6">
               {skills.frontend.map((skill, index) => (
                 <motion.div
                   key={index}
-                  className="p-4 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-sm hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300"
+                  className="p-3 sm:p-4 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-sm hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -53,14 +53,14 @@ export default function Skills() {
 
           {/* Tools */}
           <div>
-            <h3 className="text-2xl font-semibold mb-6 text-indigo-600 dark:text-indigo-400">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 mt-4 md:mt-0 text-indigo-600 dark:text-indigo-400">
               Tools
             </h3>
-            <div className="grid gap-6">
+            <div className="grid gap-4 sm:gap-6">
               {skills.tools.map((skill, index) => (
                 <motion.div
                   key={index}
-                  className="p-4 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-sm hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300"
+                  className="p-3 sm:p-4 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-sm hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}

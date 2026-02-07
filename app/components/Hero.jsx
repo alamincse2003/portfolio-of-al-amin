@@ -47,7 +47,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 px-6 md:px-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 px-4 sm:px-6 md:px-12 lg:px-20 pt-20 pb-12 overflow-hidden"
     >
       {/* Background Pattern - Subtle Dots */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(0_0_0/0.05)_1px,transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,rgb(255_255_255/0.05)_1px,transparent_0)] [background-size:32px_32px]"></div>
@@ -56,13 +56,13 @@ const Hero = () => {
       <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-6xl px-6 w-full mx-auto flex flex-col lg:flex-row md:flex-col items-center justify-between gap-12">
+      <div className="relative max-w-6xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-10 lg:gap-12">
         {/* Left Side: Text */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex-1 text-center md:text-left z-10"
+          className="flex-1 text-center lg:text-left z-10 order-2 lg:order-1"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -75,7 +75,7 @@ const Hero = () => {
             </span>
           </motion.div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 lg:mt-0 mt-2 text-zinc-900 dark:text-zinc-100">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">
             Hi, I&apos;m{" "}
             <span className="text-indigo-600 dark:text-indigo-400 relative">
               Al Amin
@@ -97,24 +97,24 @@ const Hero = () => {
             </span>
           </h1>
 
-          <h2 className="text-2xl md:text-3xl font-semibold min-h-[3rem] mb-6 text-zinc-700 dark:text-zinc-300">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold min-h-[2.5rem] sm:min-h-[3rem] mb-4 sm:mb-6 text-zinc-700 dark:text-zinc-300">
             <span className="text-indigo-600 dark:text-indigo-400">
               {displayText}
             </span>
             <span className="border-r-2 border-indigo-600 dark:border-indigo-400 ml-1 animate-pulse"></span>
           </h2>
 
-          <p className="text-lg mb-8 text-zinc-600 dark:text-zinc-400 max-w-xl leading-relaxed">
+          <p className="text-base sm:text-lg mb-6 sm:mb-8 text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
             I build modern, responsive web applications with clean code and
             smooth UI. Passionate about creating exceptional user experiences.
           </p>
 
-          <div className="flex gap-4 flex-wrap justify-center md:justify-start">
+          <div className="flex gap-3 sm:gap-4 flex-wrap justify-center lg:justify-start">
             <motion.a
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-2 px-8 py-3 bg-zinc-900 dark:bg-indigo-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-zinc-800 dark:hover:bg-indigo-500"
+              className="group inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 bg-zinc-900 dark:bg-indigo-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-zinc-800 dark:hover:bg-indigo-500 text-sm sm:text-base"
             >
               View Projects
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -124,7 +124,7 @@ const Hero = () => {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-2 px-8 py-3 border-2 border-zinc-900 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-800 dark:hover:border-zinc-600"
+              className="group inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-zinc-900 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-800 dark:hover:border-zinc-600 text-sm sm:text-base"
             >
               <Mail className="w-4 h-4" />
               Contact Me
@@ -137,12 +137,12 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex-1 flex justify-center md:justify-end z-10"
+          className="flex-1 flex justify-center z-10 order-1 lg:order-2"
         >
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96"
+            className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96"
           >
             {/* Glow Effect */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-20 blur-2xl animate-pulse"></div>

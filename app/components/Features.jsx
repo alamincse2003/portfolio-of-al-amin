@@ -5,11 +5,11 @@ import { features } from "../data/features";
 
 const Features = () => {
   return (
-    <section className="py-16 bg-zinc-50 dark:bg-zinc-950">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <section className="py-12 sm:py-16 bg-zinc-50 dark:bg-zinc-950">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.h2
-          className="text-3xl font-bold text-center text-zinc-900 dark:text-zinc-100 mb-4"
+          className="text-2xl sm:text-3xl font-bold text-center text-zinc-900 dark:text-zinc-100 mb-4"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -29,11 +29,11 @@ const Features = () => {
         </motion.p>
 
         {/* Features Grid */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm p-6 hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300 hover:-translate-y-1"
+              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300 hover:-translate-y-1"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -42,7 +42,7 @@ const Features = () => {
               <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 mb-4 text-indigo-600 dark:text-indigo-400">
                 {feature.icon}
               </div>
-              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
+              <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
                 {feature.title}
               </h3>
               <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">

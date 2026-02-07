@@ -63,35 +63,40 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 bg-zinc-50 dark:bg-zinc-950">
-      <div className="max-w-6xl mx-auto px-6 sm:px-6 lg:px-6">
+    <section
+      id="contact"
+      className="py-12 sm:py-16 bg-zinc-50 dark:bg-zinc-950"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-zinc-900 dark:text-zinc-100">
           Contact
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+            <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100">
               Get in Touch
             </h3>
-            <p className="text-zinc-700 dark:text-zinc-300">
+            <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300">
               I'm open to opportunities and collaborations. Feel free to contact
               me using the details below or send a message through the form.
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
                 <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
                   <FaEnvelope className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 </div>
-                <span>mdalamincse2003@gmail.com</span>
+                <span className="text-sm sm:text-base break-all">
+                  mdalamincse2003@gmail.com
+                </span>
               </div>
               <div className="flex items-center gap-3 text-zinc-700 dark:text-zinc-300">
                 <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
@@ -115,7 +120,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm p-6 sm:p-8 space-y-4"
+            className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm p-4 sm:p-6 md:p-8 space-y-3 sm:space-y-4"
           >
             {status && (
               <p
