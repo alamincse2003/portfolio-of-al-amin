@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, FileDown } from "lucide-react";
 
 const roles = [
   "Frontend Developer",
@@ -128,6 +128,17 @@ const Hero = () => {
             >
               <Mail className="w-4 h-4" />
               Contact Me
+            </motion.a>
+
+            <motion.a
+              href="/images/resume/Al Amin_Frontend_Developer_Resume.pdf"
+              download="Al_Amin_Frontend_Developer_Resume.pdf"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+            >
+              <FileDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+              Resume
             </motion.a>
           </div>
         </motion.div>
