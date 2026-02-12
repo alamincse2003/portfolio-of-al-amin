@@ -22,7 +22,7 @@ const About = () => {
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-20 blur-2xl animate-pulse"></div>
 
           <Image
-            src="/images/hero/alamin.jpg"
+            src="/images/hero/alamin.png"
             alt="About Me"
             fill
             className="rounded-full shadow-2xl border-4 border-zinc-200 dark:border-zinc-800 object-cover relative z-10"
