@@ -48,7 +48,7 @@ const About = () => {
             modern, responsive, and user-friendly web applications using
             <span className="font-semibold">
               {" "}
-              HTML, Tailwind CSS, JavaScript, React & Next.js
+              HTML, Tailwind CSS, JavaScript, React, Next.js & TypeScript
             </span>
             . I enjoy solving problems and always try to learn new technologies.
           </p>

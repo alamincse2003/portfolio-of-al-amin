@@ -22,81 +22,81 @@ export const skills = {
     {
       name: "HTML5",
       icon: <FaHtml5 className="text-orange-500" />,
-      level: "80%",
+      proficiency: "Advanced",
     },
     {
       name: "CSS3",
       icon: <FaCss3Alt className="text-blue-500" />,
-      level: "75%",
+      proficiency: "Advanced",
     },
     {
       name: "Bootstrap",
       icon: <FaBootstrap className="text-purple-600" />,
-      level: "78%",
+      proficiency: "Advanced",
     },
     {
       name: "Tailwind CSS",
       icon: <SiTailwindcss className="text-sky-400" />,
-      level: "75%",
+      proficiency: "Advanced",
     },
     {
       name: "Chakra UI",
       icon: <SiChakraui className="text-teal-400" />,
-      level: "80%",
+      proficiency: "Advanced",
     },
     {
       name: "JavaScript",
       icon: <SiJavascript className="text-yellow-400" />,
-      level: "70%",
+      proficiency: "Intermediate",
     },
     {
       name: "React",
       icon: <FaReact className="text-cyan-400" />,
-      level: "70%",
+      proficiency: "Intermediate",
     },
     {
       name: "Typescript",
       icon: <SiTypescript className="text-blue-600" />,
-      level: "50%",
+      proficiency: "Intermediate",
     },
     {
       name: "Nextjs",
       icon: <SiNextdotjs className="text-black dark:text-white" />,
-      level: "55%",
+      proficiency: "Intermediate",
     },
   ],
   backend: [
     {
       name: "Node.js",
       icon: <FaNodeJs className="text-green-500" />,
-      level: "55%",
+      proficiency: "Intermediate",
     },
     {
       name: "MongoDB",
       icon: <SiMongodb className="text-green-600" />,
-      level: "50%",
+      proficiency: "Intermediate",
     },
     {
       name: "MySQL",
       icon: <SiMysql className="text-blue-600" />,
-      level: "50%",
+      proficiency: "Intermediate",
     },
   ],
   tools: [
     {
       name: "Git & GitHub",
       icon: <SiGit className="text-orange-600" />,
-      level: "55%",
+      proficiency: "Intermediate",
     },
     {
       name: "Figma",
       icon: <SiFigma className="text-pink-500" />,
-      level: "60%",
+      proficiency: "Intermediate",
     },
     {
       name: "Other Tools",
       icon: <FaTools className="text-gray-600" />,
-      level: "75%",
+      proficiency: "Advanced",
     },
   ],
 };
