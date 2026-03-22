@@ -9,7 +9,7 @@ const DarkModeToggler = () => {
   return (
     <button
       onClick={() => setDarkMode(!darkMode)}
-      className="relative w-14 h-7 bg-zinc-200 dark:bg-zinc-700 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-950"
+      className="relative w-14 h-7 bg-zinc-200 dark:bg-zinc-700 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-950 cursor-pointer"
       aria-label="Toggle dark mode"
     >
       <motion.div
