@@ -10,6 +10,15 @@ export const projects = [
   },
   {
     id: 2,
+    title: "Job Portal Web App",
+    type: "Personal",
+    image: "/images/projects/job-portal-web-app.png",
+    tech: ["Tailwind CSS", "React", "React Router", "Context API"],
+    live: "https://job-portal-web-app-ashy.vercel.app",
+    code: "https://github.com/alamincse2003/job-portal-web-app",
+  },
+  {
+    id: 3,
     title: "Smart Tracker Expense Web App",
     type: "Personal",
     image: "/images/projects/smart-tracker-expense-app.png",
@@ -18,7 +27,7 @@ export const projects = [
     code: "https://github.com/alamincse2003/Smart-Expense-Tracker-Web-App",
   },
   {
-    id: 3,
+    id: 4,
     title: "QuickMart ( E-commerce )",
     type: "Personal",
     image: "/images/projects/quickmark.png",
@@ -28,7 +37,7 @@ export const projects = [
   },
 
   {
-    id: 4,
+    id: 5,
     title: "Extension Lab",
     type: "Client",
     image: "/images/projects/extention-lab.png",

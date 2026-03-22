@@ -37,7 +37,7 @@ const Projects = () => {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 sm:px-6 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-300 ${
+            className={`px-4 sm:px-6 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-300 cursor-pointer ${
               activeTab === tab
                 ? "bg-indigo-600 dark:bg-indigo-500 text-white shadow-md"
                 : "bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-300 hover:border-indigo-400 dark:hover:border-indigo-500"
