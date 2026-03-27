@@ -6,6 +6,35 @@ import { projects } from "../data/projects";
 import { FiCode, FiExternalLink } from "react-icons/fi";
 const tabs = ["All", "Personal", "Client"];
 
+const TechBadges = ({ tech }) => {
+  const [expanded, setExpanded] = useState(false);
+  const maxVisible = 3;
+  const hasMore = tech.length > maxVisible;
+  const visibleTech = expanded ? tech : tech.slice(0, maxVisible);
+  const remaining = tech.length - maxVisible;
+
+  return (
+    <div className="flex flex-wrap gap-2 mb-4">
+      {visibleTech.map((t) => (
+        <span
+          key={t}
+          className="bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300 px-2 py-1 rounded-md text-sm"
+        >
+          {t}
+        </span>
+      ))}
+      {hasMore && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300 px-2 py-1 rounded-md text-sm font-medium hover:bg-indigo-200 hover:text-indigo-800 dark:hover:bg-indigo-900/40 dark:hover:text-indigo-300 transition-colors duration-200 cursor-pointer"
+        >
+          {expanded ? "Show less" : `+${remaining} more`}
+        </button>
+      )}
+    </div>
+  );
+};
+
 const Projects = () => {
   const [activeTab, setActiveTab] = useState("All");
   const [showAll, setShowAll] = useState(false);
@@ -59,7 +88,7 @@ const Projects = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
               whileHover={{ y: -4 }}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm overflow-hidden hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300"
+              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm overflow-hidden hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300 flex flex-col"
             >
               <div className="relative w-full h-40 sm:h-48 md:h-56">
                 <Image
@@ -70,21 +99,12 @@ const Projects = () => {
                 />
               </div>
 
-              <div className="p-4 sm:p-6">
+              <div className="p-4 sm:p-6 flex flex-col flex-grow">
                 <h3 className="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-zinc-100">
                   {project.title}
                 </h3>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300 px-2 py-1 rounded-md text-sm"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-2 sm:gap-3">
+                <TechBadges tech={project.tech} />
+                <div className="flex gap-2 sm:gap-3 mt-auto">
                   <a
                     href={project.live}
                     target="_blank"
@@ -111,7 +131,7 @@ const Projects = () => {
         <div className="mt-8 text-center">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="px-6 py-3 bg-zinc-900 dark:bg-indigo-600 text-white rounded-lg shadow hover:bg-zinc-800 dark:hover:bg-indigo-500 transition-all duration-300 font-medium"
+            className="px-6 py-3 bg-zinc-900 dark:bg-indigo-600 text-white rounded-lg shadow hover:bg-zinc-800 dark:hover:bg-indigo-500 transition-all duration-300 font-medium cursor-pointer"
           >
             {showAll ? "See Less" : "See More"}
           </button>
