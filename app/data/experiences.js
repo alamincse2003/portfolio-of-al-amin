@@ -1,6 +1,6 @@
 export const experiences = [
   {
-    role: "Frontend Developer",
+    role: "Frontend Engineer",
     company: "NidusLab - USA",
     duration: "August 2025 - Present",
     details: [
