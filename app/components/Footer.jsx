@@ -24,11 +24,10 @@ const Footer = () => {
   };
 
   const links = [
-    { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
-    { name: "Experiences", href: "#experiences" },
+    { name: "Experience", href: "#experiences" },
     { name: "Education", href: "#education" },
     { name: "Certifications", href: "#certifications" },
     { name: "Contact", href: "#contact" },
@@ -143,7 +142,7 @@ const Footer = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed bottom-6 right-6 bg-zinc-900 dark:bg-indigo-600 text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-zinc-800 dark:hover:bg-indigo-500 transition-all duration-300 z-50"
+          className="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white p-3 sm:p-4 rounded-full shadow-lg shadow-indigo-500/30 transition-all duration-200 z-50"
           whileHover={{ scale: 1.1, y: -2 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Scroll to top"

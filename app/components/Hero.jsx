@@ -1,9 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 import Image from "next/image";
-import { ArrowRight, Mail, FileDown } from "lucide-react";
+import { ArrowRight, Code, FileDown, MapPin } from "lucide-react";
+import ParticleBackground from "./ParticleBackground";
+import { useEffect, useState } from "react";
+
+const stats = [
+  { label: "Projects Built", value: "5+" },
+  { label: "Technologies", value: "10+" },
+  { label: "Available for", value: "Hire" },
+];
+
+// Stagger container — children animate in sequence
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
 
 const roles = [
   "Frontend Developer",
@@ -43,137 +67,219 @@ const Hero = () => {
 
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentRole]);
-
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 px-4 sm:px-6 md:px-12 lg:px-20 pt-20 pb-12 overflow-hidden"
     >
-      {/* Background Pattern - Subtle Dots */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(0_0_0/0.05)_1px,transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,rgb(255_255_255/0.05)_1px,transparent_0)] [background-size:32px_32px]"></div>
+      {/* Particle network — scoped to hero only */}
+      <ParticleBackground />
 
-      {/* Gradient Accent */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl"></div>
+      {/* Background dot pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(0_0_0/0.05)_1px,transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,rgb(255_255_255/0.04)_1px,transparent_0)] [background-size:32px_32px]" />
 
-      <div className="relative max-w-6xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-10 lg:gap-12">
-        {/* Left Side: Text */}
+      {/* Gradient accent blobs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/8 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative max-w-6xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
+        {/* ── Left side */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
           className="flex-1 text-center lg:text-left z-10 order-2 lg:order-1"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-block mb-4 px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-full"
-          >
-            <span className="text-sm font-medium text-indigo-700 dark:text-indigo-300">
-              👋 Welcome to my portfolio
+          {/* Badge */}
+          <motion.div variants={itemVariants} className="inline-block mb-5">
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700/40 rounded-full text-sm font-medium text-indigo-700 dark:text-indigo-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Available for opportunities
             </span>
           </motion.div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">
+          {/* Name */}
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-zinc-900 dark:text-zinc-100 leading-tight"
+          >
             Hi, I&apos;m{" "}
-            <span className="text-indigo-600 dark:text-indigo-400 relative">
+            <span className="relative inline-block text-indigo-600 dark:text-indigo-400">
               Al Amin
               <svg
-                className="absolute -bottom-2 left-0 w-full"
+                className="absolute -bottom-2 left-0 w-full opacity-40"
                 height="8"
                 viewBox="0 0 200 8"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   d="M2 5C50 2 150 2 198 5"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeLinecap="round"
-                  className="text-indigo-600 dark:text-indigo-400 opacity-40"
                 />
               </svg>
             </span>
-          </h1>
+          </motion.h1>
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold min-h-[2.5rem] sm:min-h-[3rem] mb-4 sm:mb-6 text-zinc-700 dark:text-zinc-300">
+          {/* Static role — professional, no typewriter */}
+          <motion.h2
+            variants={itemVariants}
+            className="text-xl sm:text-2xl font-semibold mb-5 text-zinc-600 dark:text-zinc-300"
+          >
             <span className="text-indigo-600 dark:text-indigo-400">
               {displayText}
             </span>
             <span className="border-r-2 border-indigo-600 dark:border-indigo-400 ml-1 animate-pulse"></span>
-          </h2>
+          </motion.h2>
+          {/* <motion.h2
+            variants={itemVariants}
+            className="text-xl sm:text-2xl font-semibold mb-5 text-zinc-600 dark:text-zinc-300"
+          >
+            Frontend Developer &amp;{" "}
+            <span className="text-indigo-600 dark:text-indigo-400">
+              React Specialist
+            </span>
+          </motion.h2> */}
 
-          <p className="text-base sm:text-lg mb-6 sm:mb-8 text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            I build modern, responsive web applications with clean code and
-            smooth UI. Passionate about creating exceptional user experiences.
-          </p>
+          {/* Description */}
+          <motion.p
+            variants={itemVariants}
+            className="text-base sm:text-lg mb-8 text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+          >
+            I turn Figma designs into fast, accessible React and Next.js
+            applications — with clean code, smooth UI, and zero shortcuts.
+          </motion.p>
 
-          <div className="flex gap-3 sm:gap-4 flex-wrap justify-center lg:justify-start">
+          {/* CTAs — 2 max */}
+          <motion.div
+            variants={itemVariants}
+            className="flex gap-3 sm:gap-4 flex-wrap justify-center lg:justify-start mb-10"
+          >
             <motion.a
               href="#projects"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 bg-zinc-900 dark:bg-indigo-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-zinc-800 dark:hover:bg-indigo-500 text-sm sm:text-base"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="group inline-flex items-center gap-2 px-7 py-3 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-lg font-semibold shadow-lg shadow-indigo-500/25 transition-all duration-200 text-sm sm:text-base"
             >
               View Projects
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </motion.a>
 
             <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-zinc-900 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-800 dark:hover:border-zinc-600 text-sm sm:text-base"
-            >
-              <Mail className="w-4 h-4" />
-              Contact Me
-            </motion.a>
-
-            <motion.a
               href="/images/resume/Al Amin_Frontend_Developer_Resume.pdf"
               download="Al_Amin_Frontend_Developer_Resume.pdf"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="group inline-flex items-center gap-2 px-7 py-3 border-2 border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-100 rounded-lg font-semibold hover:border-indigo-500 hover:text-indigo-600 dark:hover:border-indigo-400 dark:hover:text-indigo-400 transition-all duration-200 text-sm sm:text-base"
             >
               <FileDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
-              Resume
+              Download CV
             </motion.a>
-          </div>
+          </motion.div>
+
+          {/* Stat badges */}
+          <motion.div
+            variants={itemVariants}
+            className="flex gap-4 flex-wrap justify-center lg:justify-start"
+          >
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="glass rounded-xl px-4 py-2.5 text-center shadow-sm"
+              >
+                <p className="text-lg font-bold text-indigo-600 dark:text-indigo-400 leading-none">
+                  {stat.value}
+                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 font-medium">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
 
-        {/* Right Side: Profile Image */}
+        {/* ── Right side */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{
+            duration: 0.8,
+            delay: 0.5,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
           className="flex-1 flex justify-center z-10 order-1 lg:order-2"
         >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96"
-          >
-            {/* Glow Effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-20 blur-2xl animate-pulse"></div>
+          <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+            {/* Soft glow — static, not animated */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-15 blur-3xl" />
 
             <Image
               src="/images/hero/alamin.webp"
-              alt="Al Amin"
+              alt="Al Amin — Frontend Developer"
               fill
-              className="rounded-full object-cover shadow-2xl border-4 border-zinc-200 dark:border-zinc-800 relative z-10"
+              className="rounded-full object-cover shadow-2xl border-4 border-zinc-200 dark:border-zinc-700 relative z-10"
               priority
             />
 
-            {/* Decorative Ring */}
-            <div
-              className="absolute inset-0 rounded-full border-2 border-indigo-500/20 dark:border-indigo-400/20 animate-ping"
-              style={{ animationDuration: "3s" }}
-            ></div>
-          </motion.div>
+            {/* Glassmorphism contact badge */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1, duration: 0.5 }}
+              className="absolute -bottom-4 -right-4 sm:bottom-2 sm:right-0 glass rounded-xl px-3 py-2 shadow-lg z-20"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-xl">
+                  <Code />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-100 leading-none">
+                    Frontend Dev
+                  </p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    React · Next.js
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Glassmorphism location badge */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.1, duration: 0.5 }}
+              className="absolute -top-4 -left-4 sm:top-4 sm:left-0 glass rounded-xl px-3 py-2 shadow-lg z-20"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-xl">
+                  <MapPin />
+                </span>
+                <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+                  Dhaka, Bangladesh
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+      >
+        <span className="text-xs text-zinc-400 dark:text-zinc-500 font-medium tracking-widest uppercase">
+          Scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[2px] h-6 bg-gradient-to-b from-indigo-500 to-transparent rounded-full"
+        />
+      </motion.div>
     </section>
   );
 };

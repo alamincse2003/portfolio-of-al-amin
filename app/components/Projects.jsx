@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { projects } from "../data/projects";
 import { FiCode, FiExternalLink } from "react-icons/fi";
+
 const tabs = ["All", "Personal", "Client"];
 
 const TechBadges = ({ tech }) => {
@@ -14,11 +15,11 @@ const TechBadges = ({ tech }) => {
   const remaining = tech.length - maxVisible;
 
   return (
-    <div className="flex flex-wrap gap-2 mb-4">
+    <div className="flex flex-wrap gap-1.5 mb-4">
       {visibleTech.map((t) => (
         <span
           key={t}
-          className="bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300 px-2 py-1 rounded-md text-sm"
+          className="font-mono text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/25 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-800/40 px-2 py-1 rounded-md"
         >
           {t}
         </span>
@@ -26,9 +27,9 @@ const TechBadges = ({ tech }) => {
       {hasMore && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="bg-zinc-200 text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300 px-2 py-1 rounded-md text-sm font-medium hover:bg-indigo-200 hover:text-indigo-800 dark:hover:bg-indigo-900/40 dark:hover:text-indigo-300 transition-colors duration-200 cursor-pointer"
+          className="text-xs px-2 py-1 rounded-md bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 hover:bg-indigo-100 hover:text-indigo-700 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-300 transition-colors duration-200 font-medium cursor-pointer"
         >
-          {expanded ? "Show less" : `+${remaining} more`}
+          {expanded ? "Less" : `+${remaining}`}
         </button>
       )}
     </div>
@@ -42,101 +43,128 @@ const Projects = () => {
   const filteredProjects =
     activeTab === "All"
       ? projects
-      : projects.filter((project) => project.type === activeTab);
+      : projects.filter((p) => p.type === activeTab);
 
-  const visibleProjects = showAll
-    ? filteredProjects
-    : filteredProjects.slice(0, 3);
+  const visibleProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3);
 
   return (
     <section
       id="projects"
-      className="py-12 sm:py-16 px-4 sm:px-6 md:px-12 lg:px-20 bg-zinc-50 dark:bg-zinc-950"
+      className="py-16 sm:py-20 px-4 sm:px-6 md:px-12 lg:px-20 bg-zinc-50 dark:bg-zinc-950"
     >
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-zinc-900 dark:text-zinc-100 text-center">
-        My Projects
-      </h2>
-      <p className="text-zinc-600 dark:text-zinc-400 mb-10 text-center">
-        {/* Some of my recent work using React, Next.js & Tailwind CSS */}
-      </p>
+      <div className="max-w-6xl mx-auto">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-3">
+            My Projects
+          </h2>
+          <p className="text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto text-sm sm:text-base">
+            A selection of things I&apos;ve built — from full-stack applications
+            to client landing pages.
+          </p>
+        </motion.div>
 
-      {/* Tabs */}
-      <div className="flex justify-center gap-2 sm:gap-4 mb-8 sm:mb-10 flex-wrap">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 sm:px-6 py-2 rounded-lg font-medium text-sm sm:text-base transition-all duration-300 cursor-pointer ${
-              activeTab === tab
-                ? "bg-indigo-600 dark:bg-indigo-500 text-white shadow-md"
-                : "bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-300 hover:border-indigo-400 dark:hover:border-indigo-500"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
-
-      {/* Project Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
-        <AnimatePresence>
-          {visibleProjects.map((project) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              whileHover={{ y: -4 }}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm overflow-hidden hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300 flex flex-col"
+        {/* Tabs */}
+        <div className="flex justify-center gap-2 mb-10 flex-wrap">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => { setActiveTab(tab); setShowAll(false); }}
+              className={`px-5 py-2 rounded-lg font-medium text-sm transition-all duration-200 cursor-pointer ${
+                activeTab === tab
+                  ? "bg-indigo-600 dark:bg-indigo-500 text-white shadow-md shadow-indigo-500/20"
+                  : "bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-indigo-400 dark:hover:border-indigo-500"
+              }`}
             >
-              <div className="relative w-full h-40 sm:h-48 md:h-56">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover rounded-lg h-full w-full transition-all duration-4000 ease-in-out object-top animate-scrollImage"
-                />
-              </div>
-
-              <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                <h3 className="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-zinc-100">
-                  {project.title}
-                </h3>
-                <TechBadges tech={project.tech} />
-                <div className="flex gap-2 sm:gap-3 mt-auto">
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400 transition-colors duration-300 text-xs sm:text-sm font-medium"
-                  >
-                    <FiExternalLink className="mr-1.5" /> Live
-                  </a>
-                  <a
-                    href={project.code}
-                    target="_blank"
-                    className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 border-2 border-zinc-900 text-zinc-900 rounded-lg hover:bg-zinc-900 hover:text-white dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300 text-xs sm:text-sm font-medium"
-                  >
-                    <FiCode className="mr-1.5" /> Code
-                  </a>
-                </div>
-              </div>
-            </motion.div>
+              {tab}
+            </button>
           ))}
-        </AnimatePresence>
-      </div>
-
-      {/* See More / See Less */}
-      {filteredProjects.length > 3 && (
-        <div className="mt-8 text-center">
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="px-6 py-3 bg-zinc-900 dark:bg-indigo-600 text-white rounded-lg shadow hover:bg-zinc-800 dark:hover:bg-indigo-500 transition-all duration-300 font-medium cursor-pointer"
-          >
-            {showAll ? "See Less" : "See More"}
-          </button>
         </div>
-      )}
+
+        {/* Project Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <AnimatePresence mode="popLayout">
+            {visibleProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4, delay: index * 0.07 }}
+                whileHover={{ y: -6 }}
+                className="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm overflow-hidden hover:shadow-xl hover:shadow-indigo-500/8 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-300 flex flex-col"
+              >
+                {/* Image */}
+                <div className="relative w-full h-44 sm:h-48 overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover object-top transition-all duration-[4000ms] ease-in-out animate-scrollImage group-hover:scale-105"
+                  />
+                  {/* Type badge over image */}
+                  <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-black/40 text-white backdrop-blur-sm">
+                    {project.type}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="p-5 flex flex-col flex-grow">
+                  <h3 className="text-base sm:text-lg font-bold mb-2 text-zinc-900 dark:text-zinc-100 leading-snug">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4 flex-grow">
+                    {project.description}
+                  </p>
+
+                  <TechBadges tech={project.tech} />
+
+                  <div className="flex gap-2.5 mt-auto pt-2 border-t border-zinc-100 dark:border-zinc-800">
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-lg transition-colors duration-200 text-xs font-semibold flex-1 justify-center"
+                    >
+                      <FiExternalLink className="w-3.5 h-3.5" /> Live Demo
+                    </a>
+                    <a
+                      href={project.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 hover:border-indigo-500 hover:text-indigo-600 dark:hover:border-indigo-400 dark:hover:text-indigo-400 rounded-lg transition-all duration-200 text-xs font-semibold flex-1 justify-center"
+                    >
+                      <FiCode className="w-3.5 h-3.5" /> Source
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+
+        {/* Show more / less */}
+        {filteredProjects.length > 3 && (
+          <div className="mt-10 text-center">
+            <motion.button
+              onClick={() => setShowAll(!showAll)}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-lg shadow-lg shadow-indigo-500/20 transition-all duration-200 font-semibold text-sm cursor-pointer"
+            >
+              {showAll ? "Show Less" : "Show All Projects"}
+            </motion.button>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

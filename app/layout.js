@@ -1,27 +1,36 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import { ThemeProvider } from "./context/ThemeContext";
 import Footer from "./components/Footer";
+import CustomCursor from "./components/CustomCursor";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const firaCode = Fira_Code({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export const metadata = {
-  title: "Al Amin Portfolio",
-  description: "Frontend Developer Portfolio using Next.js & Tailwind",
+  title: "Al Amin — Frontend Developer",
+  description:
+    "Portfolio of Al Amin, a Frontend Developer specialising in React, Next.js and Tailwind CSS. Building fast, accessible, and pixel-perfect web applications.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
       <ThemeProvider>
-        <body className="antialiased">
+        <body className="font-sans antialiased">
+          <CustomCursor />
           <Navbar />
-          <main className="mt-15">{children}</main>
+          <main className="mt-16">{children}</main>
           <Footer />
         </body>
       </ThemeProvider>

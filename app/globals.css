@@ -1,15 +1,92 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ─── Design Tokens ─────────────────────────────── */
+:root {
+  /* Primary brand colour — indigo. Use this everywhere for CTAs. */
+  --color-primary:       #4f46e5; /* indigo-600 */
+  --color-primary-hover: #4338ca; /* indigo-700 */
+  --color-primary-light: #e0e7ff; /* indigo-100 */
+  --color-primary-muted: rgba(79, 70, 229, 0.12);
+
+  /* Surfaces */
+  --color-surface:        #ffffff;
+  --color-surface-raised: #f4f4f5; /* zinc-100 */
+  --color-border:         #e4e4e7; /* zinc-200 */
+
+  /* Text */
+  --color-text-primary:   #18181b; /* zinc-900 */
+  --color-text-secondary: #71717a; /* zinc-500 */
+
+  /* Glassmorphism */
+  --glass-bg:     rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-blur:   12px;
+}
+
+.dark {
+  --color-primary:       #6366f1; /* indigo-500 */
+  --color-primary-hover: #818cf8; /* indigo-400 */
+  --color-primary-light: rgba(99, 102, 241, 0.15);
+  --color-primary-muted: rgba(99, 102, 241, 0.15);
+
+  --color-surface:        #18181b; /* zinc-900 */
+  --color-surface-raised: #27272a; /* zinc-800 */
+  --color-border:         #3f3f46; /* zinc-700 */
+
+  --color-text-primary:   #fafafa; /* zinc-50 */
+  --color-text-secondary: #a1a1aa; /* zinc-400 */
+
+  --glass-bg:     rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.10);
+}
+
+/* ─── Glassmorphism Utility ─────────────────────── */
+.glass {
+  background:    var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+/* ─── Navbar scroll state ────────────────────────── */
+.navbar-scrolled {
+  background:    var(--glass-bg) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom-color: var(--glass-border) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Scroll progress bar ────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5, #a855f7);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ─── Project image scroll animation ────────────── */
 @keyframes scrollImage {
-  0% {
-    object-position: top;
-  }
-  100% {
-    object-position: bottom;
-  }
+  0%   { object-position: top; }
+  100% { object-position: bottom; }
 }
 
 .animate-scrollImage {
   animation: scrollImage 6s linear infinite alternate;
+}
+
+/* ─── Custom cursor — hide default on pointer-fine devices ── */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+/* ─── Smooth section transitions ─────────────────── */
+section {
+  scroll-margin-top: 80px;
 }
