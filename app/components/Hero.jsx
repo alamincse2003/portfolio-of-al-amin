@@ -215,51 +215,12 @@ const Hero = () => {
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 opacity-15 blur-3xl" />
 
             <Image
-              src="/images/hero/alamin.webp"
+              src="/images/hero/profile.png"
               alt="Al Amin — Frontend Developer"
               fill
               className="rounded-full object-cover shadow-2xl border-4 border-zinc-200 dark:border-zinc-700 relative z-10"
               priority
             />
-
-            {/* Glassmorphism contact badge */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1, duration: 0.5 }}
-              className="absolute -bottom-4 -right-4 sm:bottom-2 sm:right-0 glass rounded-xl px-3 py-2 shadow-lg z-20"
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-xl">
-                  <Code />
-                </span>
-                <div>
-                  <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-100 leading-none">
-                    Frontend Dev
-                  </p>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                    React · Next.js
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Glassmorphism location badge */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.1, duration: 0.5 }}
-              className="absolute -top-4 -left-4 sm:top-4 sm:left-0 glass rounded-xl px-3 py-2 shadow-lg z-20"
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-xl">
-                  <MapPin />
-                </span>
-                <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                  Dhaka, Bangladesh
-                </p>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
       </div>
