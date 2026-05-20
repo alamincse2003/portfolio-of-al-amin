@@ -1,6 +1,42 @@
 export const projects = [
   {
     id: 1,
+    title: "AI-Powered NidusJob",
+    type: "Company",
+    description:
+      "An AI-powered job portal with role-based dashboards for Employers, Job Seekers, and Admins. Built the complete frontend with secure authentication (JWT, OAuth, OTP), real-time data sync using TanStack React Query, and optimized performance through lazy loading and pagination.",
+    image: "/images/projects/nidusjob-hero.webp",
+    tech: [
+      "React",
+      "TypeScript",
+      "Chakra UI",
+      "Python",
+      "Django",
+      "Postgresql",
+    ],
+    live: "https://nidusjob.com/",
+    code: null,
+  },
+  {
+    id: 2,
+    title: "Career College",
+    type: "Company",
+    description:
+      "A multi-page educational platform frontend with a fully designed landing page (Hero, Partners, Popular Courses, Career Journey), Our Courses, Course Details, Become a Partner, Instructor, Instructor Details, and About Us pages.",
+    image: "/images/projects/career-college.webp",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Python",
+      "Django",
+      "Postgresql",
+    ],
+    live: "https://career-college-frontend.vercel.app/",
+    code: null,
+  },
+  {
+    id: 3,
     title: "Smart Appointment & Queue Manager",
     type: "Personal",
     description:
@@ -18,7 +54,7 @@ export const projects = [
     code: "https://github.com/alamincse2003/smart-appointment-queue-manager",
   },
   {
-    id: 2,
+    id: 4,
     title: "Job Portal Web App",
     type: "Personal",
     description:
@@ -29,7 +65,7 @@ export const projects = [
     code: "https://github.com/alamincse2003/job-portal-web-app",
   },
   {
-    id: 3,
+    id: 5,
     title: "Smart Expense Tracker",
     type: "Personal",
     description:
@@ -40,7 +76,7 @@ export const projects = [
     code: "https://github.com/alamincse2003/Smart-Expense-Tracker-Web-App",
   },
   {
-    id: 4,
+    id: 6,
     title: "QuickMart — E-commerce",
     type: "Personal",
     description:
@@ -51,7 +87,7 @@ export const projects = [
     code: "https://github.com/alamincse2003/QuickMart",
   },
   {
-    id: 5,
+    id: 7,
     title: "Extension Lab",
     type: "Client",
     description:

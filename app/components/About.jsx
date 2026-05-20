@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 const stats = [
   { value: "5+", label: "Projects" },
   { value: "10+", label: "Technologies" },
-  { value: "2+", label: "Years Learning" },
+  { value: "1+", label: "Years Experience" },
 ];
 
 const containerVariants = {
@@ -88,7 +88,7 @@ const About = () => {
             className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 text-center md:text-left"
           >
             My goal is to join a team where I can ship impactful products and
-            grow into a well-rounded engineer — not just a UI developer.
+            grow into a well-rounded engineer - not just a UI developer.
           </motion.p>
 
           {/* Stats row */}

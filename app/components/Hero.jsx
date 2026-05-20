@@ -148,7 +148,7 @@ const Hero = () => {
             className="text-base sm:text-lg mb-8 text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto lg:mx-0 leading-relaxed"
           >
             I turn Figma designs into fast, accessible React and Next.js
-            applications — with clean code, smooth UI, and zero shortcuts.
+            applications - with clean code, smooth UI, and zero shortcuts.
           </motion.p>
 
           {/* CTAs — 2 max */}
@@ -218,7 +218,7 @@ const Hero = () => {
               src="/images/hero/profile.png"
               alt="Al Amin — Frontend Developer"
               fill
-              className="rounded-full object-cover shadow-2xl border-4 border-zinc-200 dark:border-zinc-700 relative z-10"
+              className="rounded-full object-cover shadow-2xl border-4 border-zinc-300 dark:border-zinc-700 relative z-10"
               priority
             />
           </div>

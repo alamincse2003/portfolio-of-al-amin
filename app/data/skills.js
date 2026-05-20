@@ -16,6 +16,8 @@ import {
   SiChakraui,
   SiTypescript,
   SiNextdotjs,
+  SiMui,
+  SiAntdesign,
 } from "react-icons/si";
 export const skills = {
   frontend: [
@@ -42,6 +44,16 @@ export const skills = {
     {
       name: "Chakra UI",
       icon: <SiChakraui className="text-teal-400" />,
+      proficiency: "Advanced",
+    },
+    {
+      name: "Material UI",
+      icon: <SiMui className="text-blue-500" />,
+      proficiency: "Advanced",
+    },
+    {
+      name: "Ant Design",
+      icon: <SiAntdesign className="text-blue-400" />,
       proficiency: "Advanced",
     },
     {

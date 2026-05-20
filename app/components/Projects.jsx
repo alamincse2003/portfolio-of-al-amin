@@ -5,7 +5,27 @@ import Image from "next/image";
 import { projects } from "../data/projects";
 import { FiCode, FiExternalLink } from "react-icons/fi";
 
-const tabs = ["All", "Personal", "Client"];
+const tabs = ["All", "Company", "Personal", "Client"];
+
+const DESCRIPTION_LIMIT = 100;
+
+const ExpandableDescription = ({ text }) => {
+  const [expanded, setExpanded] = useState(false);
+  const isLong = text.length > DESCRIPTION_LIMIT;
+  return (
+    <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4 min-h-[72px]">
+      {isLong && !expanded ? text.slice(0, DESCRIPTION_LIMIT) + "…" : text}
+      {isLong && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="ml-1 text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium text-xs cursor-pointer"
+        >
+          {expanded ? "See less" : "See more"}
+        </button>
+      )}
+    </p>
+  );
+};
 
 const TechBadges = ({ tech }) => {
   const [expanded, setExpanded] = useState(false);
@@ -15,7 +35,7 @@ const TechBadges = ({ tech }) => {
   const remaining = tech.length - maxVisible;
 
   return (
-    <div className="flex flex-wrap gap-1.5 mb-4">
+    <div className="flex flex-wrap gap-1.5 mb-4 min-h-[40px] content-start">
       {visibleTech.map((t) => (
         <span
           key={t}
@@ -121,13 +141,12 @@ const Projects = () => {
                     {project.title}
                   </h3>
 
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4 flex-grow">
-                    {project.description}
-                  </p>
+                  <div className="flex-grow">
+                    <ExpandableDescription text={project.description} />
+                    <TechBadges tech={project.tech} />
+                  </div>
 
-                  <TechBadges tech={project.tech} />
-
-                  <div className="flex gap-2.5 mt-auto pt-2 border-t border-zinc-100 dark:border-zinc-800">
+                  <div className="flex gap-2.5 pt-2 border-t border-zinc-100 dark:border-zinc-800">
                     <a
                       href={project.live}
                       target="_blank"
@@ -136,14 +155,16 @@ const Projects = () => {
                     >
                       <FiExternalLink className="w-3.5 h-3.5" /> Live Demo
                     </a>
-                    <a
-                      href={project.code}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 hover:border-indigo-500 hover:text-indigo-600 dark:hover:border-indigo-400 dark:hover:text-indigo-400 rounded-lg transition-all duration-200 text-xs font-semibold flex-1 justify-center"
-                    >
-                      <FiCode className="w-3.5 h-3.5" /> Source
-                    </a>
+                    {project.code && (
+                      <a
+                        href={project.code}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 hover:border-indigo-500 hover:text-indigo-600 dark:hover:border-indigo-400 dark:hover:text-indigo-400 rounded-lg transition-all duration-200 text-xs font-semibold flex-1 justify-center"
+                      >
+                        <FiCode className="w-3.5 h-3.5" /> Source
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>
