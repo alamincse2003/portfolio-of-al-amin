@@ -2,7 +2,7 @@ export const experiences = [
   {
     role: "Frontend Engineer",
     company: "NidusLab - USA",
-    duration: "August 2025 - Present",
+    duration: "April 2025 - Present",
     details: [
       "Developed secure authentication and authorization flows including JWT tokens, Google OAuth, OTP verification, and protected route management.",
       "Developed Employer Dashboard with job posting workflows, applicant pipeline management, and company profile management.",
