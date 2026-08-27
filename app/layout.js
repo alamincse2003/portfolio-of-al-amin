@@ -1,9 +1,8 @@
-import { Inter, Fira_Code } from "next/font/google";
+import { Inter, Fira_Code, Lora, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import { ThemeProvider } from "./context/ThemeContext";
 import Footer from "./components/Footer";
-import CustomCursor from "./components/CustomCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,6 +16,18 @@ const firaCode = Fira_Code({
   display: "swap",
 });
 
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-script",
+  display: "swap",
+});
+
 export const metadata = {
   title: "Al Amin — Frontend Developer",
   description:
@@ -25,12 +36,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${firaCode.variable} ${lora.variable} ${dancingScript.variable}`}
+    >
       <ThemeProvider>
         <body className="font-sans antialiased">
-          <CustomCursor />
           <Navbar />
-          <main className="mt-16">{children}</main>
+          <main>{children}</main>
           <Footer />
         </body>
       </ThemeProvider>

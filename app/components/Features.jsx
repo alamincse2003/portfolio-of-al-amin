@@ -5,7 +5,7 @@ import { features } from "../data/features";
 
 const Features = () => {
   return (
-    <section className="py-12 sm:py-16 bg-zinc-50 dark:bg-zinc-950">
+    <section className="py-12 sm:py-16 bg-surface-raised">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <motion.h2
@@ -33,13 +33,13 @@ const Features = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-lg hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300 hover:-translate-y-1"
+              className="bg-surface border border-border rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-lg hover:border-accent/40 transition-all duration-300 hover:-translate-y-1"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 mb-4 text-indigo-600 dark:text-indigo-400">
+              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-zinc-200 dark:bg-zinc-800/30 mb-4 text-zinc-900 dark:text-zinc-300">
                 {feature.icon}
               </div>
               <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">

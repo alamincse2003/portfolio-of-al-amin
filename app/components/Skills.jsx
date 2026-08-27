@@ -1,125 +1,75 @@
 "use client";
-import { motion } from "framer-motion";
+import { useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
 import { skills } from "../data/skills";
 
-const proficiencyColors = {
-  Advanced: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
-  Intermediate: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-  Familiar: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
-};
+const SkillGroup = ({ title, items, groupRef }) => (
+  <div>
+    <h3 className="text-sm font-semibold uppercase tracking-wide mb-4 text-zinc-500 dark:text-zinc-400">
+      {title}
+    </h3>
+    <div ref={groupRef} className="flex flex-wrap gap-2.5">
+      {items.map((skill) => (
+        <span
+          key={skill.name}
+          className="skill-badge group inline-flex items-center gap-2 px-3.5 py-2 bg-surface-raised border border-border rounded-lg text-sm font-medium text-zinc-800 dark:text-zinc-200"
+        >
+          <span className="text-lg leading-none">{skill.icon}</span>
+          {skill.name}
+        </span>
+      ))}
+    </div>
+  </div>
+);
 
 export default function Skills() {
+  const sectionRef = useRef(null);
+  const frontendRef = useRef(null);
+  const backendRef = useRef(null);
+  const toolsRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const groups = [frontendRef.current, backendRef.current, toolsRef.current].filter(Boolean);
+
+    const triggers = groups.map((group) => {
+      const badges = group.querySelectorAll(".skill-badge");
+      gsap.set(badges, { opacity: 0, y: 10 });
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            gsap.to(badges, {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              stagger: 0.03,
+              ease: "power2.out",
+            });
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.2 }
+      );
+      observer.observe(group);
+      return observer;
+    });
+
+    return () => triggers.forEach((observer) => observer.disconnect());
+  }, []);
+
   return (
-    <section id="skills" className="py-12 sm:py-16 bg-white dark:bg-zinc-900">
+    <section id="skills" ref={sectionRef} className="py-12 sm:py-16 bg-surface">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-zinc-900 dark:text-zinc-100">
-          Skills & Technologies
+        <h2 className="font-serif text-2xl sm:text-3xl mb-10 text-zinc-900 dark:text-zinc-100">
+          Skills &amp; Technologies
         </h2>
 
-        <div className="space-y-12">
-          {/* Frontend */}
-          <div>
-            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-indigo-600 dark:text-indigo-400">
-              Frontend Development
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {skills.frontend.map((skill, index) => (
-                <motion.div
-                  key={index}
-                  className="group relative p-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl hover:shadow-lg hover:shadow-indigo-100 dark:hover:shadow-indigo-900/20 hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ y: -4 }}
-                >
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <div className="text-4xl transform group-hover:scale-110 transition-transform duration-300">
-                      {skill.icon}
-                    </div>
-                    <span className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">
-                      {skill.name}
-                    </span>
-                    {skill.proficiency && (
-                      <span className={`text-xs px-2 py-1 rounded-full font-medium ${proficiencyColors[skill.proficiency]}`}>
-                        {skill.proficiency}
-                      </span>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Backend */}
-          {skills.backend && skills.backend.length > 0 && (
-            <div>
-              <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-green-600 dark:text-green-400">
-                Backend Development
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                {skills.backend.map((skill, index) => (
-                  <motion.div
-                    key={index}
-                    className="group relative p-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl hover:shadow-lg hover:shadow-green-100 dark:hover:shadow-green-900/20 hover:border-green-300 dark:hover:border-green-500 transition-all duration-300"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    whileHover={{ y: -4 }}
-                  >
-                    <div className="flex flex-col items-center text-center gap-3">
-                      <div className="text-4xl transform group-hover:scale-110 transition-transform duration-300">
-                        {skill.icon}
-                      </div>
-                      <span className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">
-                        {skill.name}
-                      </span>
-                      {skill.proficiency && (
-                        <span className={`text-xs px-2 py-1 rounded-full font-medium ${proficiencyColors[skill.proficiency]}`}>
-                          {skill.proficiency}
-                        </span>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+        <div className="space-y-10">
+          <SkillGroup title="Frontend" items={skills.frontend} groupRef={frontendRef} />
+          {skills.backend?.length > 0 && (
+            <SkillGroup title="Backend" items={skills.backend} groupRef={backendRef} />
           )}
-
-          {/* Tools */}
-          <div>
-            <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-purple-600 dark:text-purple-400">
-              Tools & Platforms
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {skills.tools.map((skill, index) => (
-                <motion.div
-                  key={index}
-                  className="group relative p-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl hover:shadow-lg hover:shadow-purple-100 dark:hover:shadow-purple-900/20 hover:border-purple-300 dark:hover:border-purple-500 transition-all duration-300"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ y: -4 }}
-                >
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <div className="text-4xl transform group-hover:scale-110 transition-transform duration-300">
-                      {skill.icon}
-                    </div>
-                    <span className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">
-                      {skill.name}
-                    </span>
-                    {skill.proficiency && (
-                      <span className={`text-xs px-2 py-1 rounded-full font-medium ${proficiencyColors[skill.proficiency]}`}>
-                        {skill.proficiency}
-                      </span>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          <SkillGroup title="Tools" items={skills.tools} groupRef={toolsRef} />
         </div>
       </div>
     </section>

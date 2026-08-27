@@ -25,16 +25,17 @@ const Footer = () => {
 
   const links = [
     { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
     { name: "Experience", href: "#experiences" },
+    { name: "Projects", href: "#projects" },
+    { name: "Notes", href: "#notes" },
+    { name: "Skills", href: "#skills" },
     { name: "Education", href: "#education" },
     { name: "Certifications", href: "#certifications" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <footer className="bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 py-12 relative">
+    <footer className="bg-surface border-t border-border py-12 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Main Content */}
         <div className="text-center mb-8">
@@ -43,7 +44,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-2"
+            className="font-script text-3xl text-zinc-900 dark:text-zinc-100 mb-2"
           >
             Al Amin
           </motion.h3>
@@ -72,7 +73,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="p-3 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300"
+            className="p-3 bg-surface-raised border border-border rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-accent hover:border-accent/50 transition-all duration-300"
           >
             <FaGithub className="w-5 h-5" />
           </motion.a>
@@ -82,7 +83,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="p-3 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300"
+            className="p-3 bg-surface-raised border border-border rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-accent hover:border-accent/50 transition-all duration-300"
           >
             <FaLinkedin className="w-5 h-5" />
           </motion.a>
@@ -90,7 +91,7 @@ const Footer = () => {
             href="mailto:mdalamincse2003@gmail.com"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="p-3 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300"
+            className="p-3 bg-surface-raised border border-border rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-accent hover:border-accent/50 transition-all duration-300"
           >
             <FaEnvelope className="w-5 h-5" />
           </motion.a>
@@ -108,7 +109,7 @@ const Footer = () => {
             <li key={index}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-300 transition-colors duration-300"
               >
                 {link.name}
               </a>
@@ -117,7 +118,7 @@ const Footer = () => {
         </motion.ul>
 
         {/* Divider */}
-        <div className="border-t border-zinc-200 dark:border-zinc-800 mb-6"></div>
+        <div className="border-t border-border mb-6"></div>
 
         {/* Copyright */}
         <motion.p
@@ -142,7 +143,7 @@ const Footer = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white p-3 sm:p-4 rounded-full shadow-lg shadow-indigo-500/30 transition-all duration-200 z-50"
+          className="fixed bottom-6 right-6 bg-zinc-900 hover:bg-zinc-700 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 p-3 sm:p-4 rounded-full shadow-lg transition-all duration-200 z-50"
           whileHover={{ scale: 1.1, y: -2 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Scroll to top"

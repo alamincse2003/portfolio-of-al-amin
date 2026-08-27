@@ -3,7 +3,6 @@ import {
   FaCss3Alt,
   FaReact,
   FaNodeJs,
-  FaTools,
   FaBootstrap,
 } from "react-icons/fa";
 import {
@@ -19,96 +18,30 @@ import {
   SiMui,
   SiAntdesign,
 } from "react-icons/si";
+
+const icon = "text-zinc-500 dark:text-zinc-400 group-hover:text-accent transition-colors";
+
 export const skills = {
   frontend: [
-    {
-      name: "HTML5",
-      icon: <FaHtml5 className="text-orange-500" />,
-      proficiency: "Advanced",
-    },
-    {
-      name: "CSS3",
-      icon: <FaCss3Alt className="text-blue-500" />,
-      proficiency: "Advanced",
-    },
-    {
-      name: "Bootstrap",
-      icon: <FaBootstrap className="text-purple-600" />,
-      proficiency: "Advanced",
-    },
-    {
-      name: "Tailwind CSS",
-      icon: <SiTailwindcss className="text-sky-400" />,
-      proficiency: "Advanced",
-    },
-    {
-      name: "Chakra UI",
-      icon: <SiChakraui className="text-teal-400" />,
-      proficiency: "Advanced",
-    },
-    {
-      name: "Material UI",
-      icon: <SiMui className="text-blue-500" />,
-      proficiency: "Advanced",
-    },
-    {
-      name: "Ant Design",
-      icon: <SiAntdesign className="text-blue-400" />,
-      proficiency: "Advanced",
-    },
-    {
-      name: "JavaScript",
-      icon: <SiJavascript className="text-yellow-400" />,
-      proficiency: "Intermediate",
-    },
-    {
-      name: "React",
-      icon: <FaReact className="text-cyan-400" />,
-      proficiency: "Intermediate",
-    },
-    {
-      name: "Typescript",
-      icon: <SiTypescript className="text-blue-600" />,
-      proficiency: "Intermediate",
-    },
-    {
-      name: "Nextjs",
-      icon: <SiNextdotjs className="text-black dark:text-white" />,
-      proficiency: "Intermediate",
-    },
+    { name: "React", icon: <FaReact className={icon} /> },
+    { name: "Next.js", icon: <SiNextdotjs className={icon} /> },
+    { name: "TypeScript", icon: <SiTypescript className={icon} /> },
+    { name: "JavaScript", icon: <SiJavascript className={icon} /> },
+    { name: "Tailwind CSS", icon: <SiTailwindcss className={icon} /> },
+    { name: "Chakra UI", icon: <SiChakraui className={icon} /> },
+    { name: "Material UI", icon: <SiMui className={icon} /> },
+    { name: "Ant Design", icon: <SiAntdesign className={icon} /> },
+    { name: "Bootstrap", icon: <FaBootstrap className={icon} /> },
+    { name: "HTML5", icon: <FaHtml5 className={icon} /> },
+    { name: "CSS3", icon: <FaCss3Alt className={icon} /> },
   ],
   backend: [
-    {
-      name: "Node.js",
-      icon: <FaNodeJs className="text-green-500" />,
-      proficiency: "Intermediate",
-    },
-    {
-      name: "MongoDB",
-      icon: <SiMongodb className="text-green-600" />,
-      proficiency: "Intermediate",
-    },
-    {
-      name: "MySQL",
-      icon: <SiMysql className="text-blue-600" />,
-      proficiency: "Intermediate",
-    },
+    { name: "Node.js", icon: <FaNodeJs className={icon} /> },
+    { name: "MongoDB", icon: <SiMongodb className={icon} /> },
+    { name: "MySQL", icon: <SiMysql className={icon} /> },
   ],
   tools: [
-    {
-      name: "Git & GitHub",
-      icon: <SiGit className="text-orange-600" />,
-      proficiency: "Intermediate",
-    },
-    {
-      name: "Figma",
-      icon: <SiFigma className="text-pink-500" />,
-      proficiency: "Intermediate",
-    },
-    {
-      name: "Other Tools",
-      icon: <FaTools className="text-gray-600" />,
-      proficiency: "Advanced",
-    },
+    { name: "Git & GitHub", icon: <SiGit className={icon} /> },
+    { name: "Figma", icon: <SiFigma className={icon} /> },
   ],
 };

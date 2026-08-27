@@ -7,11 +7,11 @@ export default function Experience() {
   return (
     <section
       id="experiences"
-      className="py-12 sm:py-16 bg-white dark:bg-zinc-900"
+      className="py-12 sm:py-16 bg-surface"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Title */}
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-zinc-900 dark:text-zinc-100">
+        <h2 className="font-serif text-2xl sm:text-3xl text-center mb-8 sm:mb-12 text-zinc-900 dark:text-zinc-100">
           Experience
         </h2>
 
@@ -26,10 +26,10 @@ export default function Experience() {
               viewport={{ once: true }}
             >
               {/* Card */}
-              <div className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-600 transition-all duration-300">
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
-                    <Briefcase className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+              <div className="bg-surface-raised border border-border rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-md hover:border-accent/40 transition-all duration-300">
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="p-2 bg-surface rounded-lg">
+                    <Briefcase className="w-5 h-5 text-zinc-900 dark:text-zinc-300" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100">
@@ -40,7 +40,23 @@ export default function Experience() {
                     </p>
                   </div>
                 </div>
-                <ul className="list-disc list-inside mt-2 sm:mt-3 text-sm sm:text-base text-zinc-700 dark:text-zinc-300 space-y-1 ml-2">
+
+                {/* Impact row — lead with outcomes */}
+                {exp.impact && (
+                  <ul className="space-y-1.5 mb-4">
+                    {exp.impact.map((item, i) => (
+                      <li
+                        key={i}
+                        className="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100 pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* Supporting detail — demoted */}
+                <ul className="list-disc list-inside text-sm text-zinc-500 dark:text-zinc-400 space-y-1 ml-2 pt-3 border-t border-border">
                   {exp.details.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}

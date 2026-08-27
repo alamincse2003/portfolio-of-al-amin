@@ -3,6 +3,11 @@ export const experiences = [
     role: "Frontend Engineer",
     company: "NidusLab - USA",
     duration: "April 2025 - Present",
+    impact: [
+      "Shipped 3 production dashboards (Employer, Job Seeker, Admin) live at nidusjob.com",
+      "Built the auth layer (JWT, Google OAuth, OTP) securing every protected route in the platform",
+      "Delivered real-time chat and notifications over WebSockets, used daily across employer and job-seeker accounts",
+    ],
     details: [
       "Developed secure authentication and authorization flows including JWT tokens, Google OAuth, OTP verification, and protected route management.",
       "Developed Employer Dashboard with job posting workflows, applicant pipeline management, and company profile management.",

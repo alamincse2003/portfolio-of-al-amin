@@ -1,188 +1,216 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { projects } from "../data/projects";
-import { FiCode, FiExternalLink } from "react-icons/fi";
+import { FiCode, FiExternalLink, FiChevronDown } from "react-icons/fi";
 
-const tabs = ["All", "Company", "Personal", "Client"];
+const CASE_STUDY_IDS = [1, 2, 3];
 
-const DESCRIPTION_LIMIT = 100;
+const caseStudies = projects.filter((p) => CASE_STUDY_IDS.includes(p.id));
+const moreProjects = projects.filter((p) => !CASE_STUDY_IDS.includes(p.id));
 
-const ExpandableDescription = ({ text }) => {
-  const [expanded, setExpanded] = useState(false);
-  const isLong = text.length > DESCRIPTION_LIMIT;
+const TechBadges = ({ tech }) => (
+  <div className="flex flex-wrap gap-1.5">
+    {tech.map((t) => (
+      <span
+        key={t}
+        className="font-mono text-xs bg-surface-raised text-zinc-700 dark:text-zinc-300 border border-border px-2 py-1 rounded-md"
+      >
+        {t}
+      </span>
+    ))}
+  </div>
+);
+
+const ProjectLinks = ({ live, code }) => (
+  <div className="flex gap-2.5">
+    <a
+      href={live}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent hover:bg-accent-strong text-white rounded-lg transition-colors duration-200 text-xs font-semibold"
+    >
+      <FiExternalLink className="w-3.5 h-3.5" /> Live Demo
+    </a>
+    {code && (
+      <a
+        href={code}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1.5 px-4 py-2 border border-border text-zinc-800 dark:text-zinc-200 hover:border-accent hover:text-accent rounded-lg transition-all duration-200 text-xs font-semibold"
+      >
+        <FiCode className="w-3.5 h-3.5" /> Source
+      </a>
+    )}
+  </div>
+);
+
+const CaseStudy = ({ project, index }) => {
+  const [approachOpen, setApproachOpen] = useState(false);
+
   return (
-    <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4 min-h-[72px]">
-      {isLong && !expanded ? text.slice(0, DESCRIPTION_LIMIT) + "…" : text}
-      {isLong && (
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="ml-1 text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium text-xs cursor-pointer"
-        >
-          {expanded ? "See less" : "See more"}
-        </button>
-      )}
-    </p>
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-10 py-10 border-b border-border last:border-0"
+    >
+      {/* Image */}
+      <div className="md:col-span-2">
+        <div className="relative w-full h-48 md:h-full min-h-[180px] rounded-xl overflow-hidden border border-border">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover object-top"
+          />
+          <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-black/40 text-white backdrop-blur-sm">
+            {project.type}
+          </span>
+        </div>
+      </div>
+
+      {/* Text */}
+      <div className="md:col-span-3">
+        <h3 className="font-serif text-xl sm:text-2xl text-zinc-900 dark:text-zinc-100 mb-3">
+          {project.title}
+        </h3>
+
+        <div className="space-y-3 mb-4">
+          <div>
+            <p className="font-serif italic text-sm text-accent mb-1">The problem</p>
+            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              {project.caseStudy.problem}
+            </p>
+          </div>
+
+          <div>
+            <button
+              onClick={() => setApproachOpen(!approachOpen)}
+              className="flex items-center gap-1.5 font-serif italic text-sm text-accent mb-1 cursor-pointer"
+            >
+              The approach
+              <FiChevronDown
+                className={`w-3.5 h-3.5 transition-transform ${approachOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+            {approachOpen && (
+              <motion.p
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                transition={{ duration: 0.25 }}
+                className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed overflow-hidden"
+              >
+                {project.caseStudy.approach}
+              </motion.p>
+            )}
+          </div>
+
+          <div>
+            <p className="font-serif italic text-sm text-accent mb-1">The outcome</p>
+            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              {project.caseStudy.outcome}
+            </p>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <TechBadges tech={project.tech} />
+        </div>
+
+        <ProjectLinks live={project.live} code={project.code} />
+      </div>
+    </motion.article>
   );
 };
 
-const TechBadges = ({ tech }) => {
-  const [expanded, setExpanded] = useState(false);
-  const maxVisible = 3;
-  const hasMore = tech.length > maxVisible;
-  const visibleTech = expanded ? tech : tech.slice(0, maxVisible);
-  const remaining = tech.length - maxVisible;
-
-  return (
-    <div className="flex flex-wrap gap-1.5 mb-4 min-h-[40px] content-start">
-      {visibleTech.map((t) => (
-        <span
-          key={t}
-          className="font-mono text-xs bg-indigo-50 text-indigo-700 dark:bg-indigo-900/25 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-800/40 px-2 py-1 rounded-md"
+const MoreProjectRow = ({ project, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 12 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.4, delay: index * 0.06 }}
+    className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 py-5 border-b border-border last:border-0"
+  >
+    <div className="sm:w-56 shrink-0">
+      <h4 className="font-semibold text-zinc-900 dark:text-zinc-100">{project.title}</h4>
+      <span className="text-xs text-zinc-500 dark:text-zinc-400">{project.type}</span>
+    </div>
+    <p className="flex-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+      {project.description}
+    </p>
+    <div className="flex items-center gap-3 shrink-0">
+      <a
+        href={project.live}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${project.title} live demo`}
+        className="text-zinc-500 dark:text-zinc-400 hover:text-accent transition-colors"
+      >
+        <FiExternalLink className="w-4 h-4" />
+      </a>
+      {project.code && (
+        <a
+          href={project.code}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${project.title} source code`}
+          className="text-zinc-500 dark:text-zinc-400 hover:text-accent transition-colors"
         >
-          {t}
-        </span>
-      ))}
-      {hasMore && (
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="text-xs px-2 py-1 rounded-md bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 hover:bg-indigo-100 hover:text-indigo-700 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-300 transition-colors duration-200 font-medium cursor-pointer"
-        >
-          {expanded ? "Less" : `+${remaining}`}
-        </button>
+          <FiCode className="w-4 h-4" />
+        </a>
       )}
     </div>
-  );
-};
+  </motion.div>
+);
 
 const Projects = () => {
-  const [activeTab, setActiveTab] = useState("All");
-  const [showAll, setShowAll] = useState(false);
-
-  const filteredProjects =
-    activeTab === "All"
-      ? projects
-      : projects.filter((p) => p.type === activeTab);
-
-  const visibleProjects = showAll ? filteredProjects : filteredProjects.slice(0, 3);
-
   return (
     <section
       id="projects"
-      className="py-16 sm:py-20 px-4 sm:px-6 md:px-12 lg:px-20 bg-zinc-50 dark:bg-zinc-950"
+      className="py-16 sm:py-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-surface"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10"
+          className="mb-10"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-3">
-            My Projects
+          <h2 className="font-serif text-3xl sm:text-4xl text-zinc-900 dark:text-zinc-100 mb-3">
+            Selected Work
           </h2>
-          <p className="text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto text-sm sm:text-base">
-            A selection of things I&apos;ve built — from full-stack applications
-            to client landing pages.
+          <p className="text-zinc-500 dark:text-zinc-400 max-w-xl text-sm sm:text-base">
+            A closer look at three projects — the problem each one solved, how
+            I approached it, and what shipped.
           </p>
         </motion.div>
 
-        {/* Tabs */}
-        <div className="flex justify-center gap-2 mb-10 flex-wrap">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => { setActiveTab(tab); setShowAll(false); }}
-              className={`px-5 py-2 rounded-lg font-medium text-sm transition-all duration-200 cursor-pointer ${
-                activeTab === tab
-                  ? "bg-indigo-600 dark:bg-indigo-500 text-white shadow-md shadow-indigo-500/20"
-                  : "bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-indigo-400 dark:hover:border-indigo-500"
-              }`}
-            >
-              {tab}
-            </button>
+        {/* Case studies */}
+        <div>
+          {caseStudies.map((project, index) => (
+            <CaseStudy key={project.id} project={project} index={index} />
           ))}
         </div>
 
-        {/* Project Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          <AnimatePresence mode="popLayout">
-            {visibleProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4, delay: index * 0.07 }}
-                whileHover={{ y: -6 }}
-                className="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm overflow-hidden hover:shadow-xl hover:shadow-indigo-500/8 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-300 flex flex-col"
-              >
-                {/* Image */}
-                <div className="relative w-full h-44 sm:h-48 overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover object-top transition-all duration-[4000ms] ease-in-out animate-scrollImage group-hover:scale-105"
-                  />
-                  {/* Type badge over image */}
-                  <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-black/40 text-white backdrop-blur-sm">
-                    {project.type}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="p-5 flex flex-col flex-grow">
-                  <h3 className="text-base sm:text-lg font-bold mb-2 text-zinc-900 dark:text-zinc-100 leading-snug">
-                    {project.title}
-                  </h3>
-
-                  <div className="flex-grow">
-                    <ExpandableDescription text={project.description} />
-                    <TechBadges tech={project.tech} />
-                  </div>
-
-                  <div className="flex gap-2.5 pt-2 border-t border-zinc-100 dark:border-zinc-800">
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-lg transition-colors duration-200 text-xs font-semibold flex-1 justify-center"
-                    >
-                      <FiExternalLink className="w-3.5 h-3.5" /> Live Demo
-                    </a>
-                    {project.code && (
-                      <a
-                        href={project.code}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-4 py-2 border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 hover:border-indigo-500 hover:text-indigo-600 dark:hover:border-indigo-400 dark:hover:text-indigo-400 rounded-lg transition-all duration-200 text-xs font-semibold flex-1 justify-center"
-                      >
-                        <FiCode className="w-3.5 h-3.5" /> Source
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* Show more / less */}
-        {filteredProjects.length > 3 && (
-          <div className="mt-10 text-center">
-            <motion.button
-              onClick={() => setShowAll(!showAll)}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-lg shadow-lg shadow-indigo-500/20 transition-all duration-200 font-semibold text-sm cursor-pointer"
-            >
-              {showAll ? "Show Less" : "Show All Projects"}
-            </motion.button>
+        {/* More projects */}
+        {moreProjects.length > 0 && (
+          <div className="mt-16">
+            <h3 className="font-serif text-xl text-zinc-900 dark:text-zinc-100 mb-2">
+              More projects
+            </h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2">
+              Smaller builds and client work.
+            </p>
+            <div>
+              {moreProjects.map((project, index) => (
+                <MoreProjectRow key={project.id} project={project} index={index} />
+              ))}
+            </div>
           </div>
         )}
       </div>
