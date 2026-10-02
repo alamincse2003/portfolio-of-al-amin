@@ -1,53 +1,57 @@
-"use client";
-import { motion } from "framer-motion";
-import { FaGraduationCap, FaCalendarAlt } from "react-icons/fa";
-import { education } from "../data/education";
+import { FileText, GraduationCap } from "lucide-react";
+import Section from "./ui/Section";
+import Reveal from "./Reveal";
+import { education, training } from "../data/education";
+import type { EducationItem } from "../types";
 
-const Eductaion = () => {
+function Entry({ item, label }: { item: EducationItem; label: string }) {
+  const Icon = label === "Education" ? GraduationCap : FileText;
   return (
-    <section
-      id="education"
-      className="py-12 sm:py-16 bg-surface"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <h2 className="font-serif text-2xl sm:text-3xl text-center mb-8 sm:mb-12 text-zinc-900 dark:text-zinc-100">
-          Education
-        </h2>
-
-        <div className="grid gap-4 sm:gap-6">
-          {education.map((edu, index) => (
-            <motion.div
-              key={index}
-              className="bg-surface-raised border border-border rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-md hover:border-accent/40 transition-all duration-300"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -2 }}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-2">
-                <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-                  <FaGraduationCap className="w-5 h-5 text-zinc-900 dark:text-zinc-300" />{" "}
-                  {edu.degree}
-                </h3>
-                <span className="flex items-center text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm gap-1 ml-7 sm:ml-0">
-                  <FaCalendarAlt className="w-3 h-3" /> {edu.duration}
-                </span>
-              </div>
-              <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 italic mb-2 sm:mb-3">
-                {edu.institution}
-              </p>
-              <ul className="list-disc list-inside text-sm sm:text-base text-zinc-700 dark:text-zinc-300 space-y-1">
-                {edu.details.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
+    <li data-reveal className="flex gap-4 rounded-xl border border-line bg-surface p-6">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-subtle text-muted">
+        <Icon className="h-5 w-5" aria-hidden />
+      </span>
+      <div className="min-w-0">
+        <p className="font-mono text-xs uppercase tracking-wider text-faint">{label}</p>
+        <h3 className="mt-1 font-semibold text-fg">{item.title}</h3>
+        <p className="mt-0.5 text-sm text-muted">{item.institution}</p>
+        <p className="mt-1 font-mono text-xs text-faint">
+          {item.start} — {item.end}
+        </p>
+        {item.details?.map((detail) => (
+          <p key={detail} className="mt-3 text-sm text-fg">
+            {detail}
+          </p>
+        ))}
+        {item.link && (
+          <a
+            href={item.link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-block text-sm font-medium text-accent-text underline-offset-4 hover:underline"
+          >
+            {item.link.label}
+            <span className="sr-only"> (PDF, opens in a new tab)</span>
+          </a>
+        )}
       </div>
-    </section>
+    </li>
   );
-};
+}
 
-export default Eductaion;
+export default function Education() {
+  return (
+    <Section id="education" eyebrow="Education" title="Education & training">
+      <Reveal>
+        <ul className="grid gap-4 md:grid-cols-2">
+          {education.map((item) => (
+            <Entry key={item.title} item={item} label="Education" />
+          ))}
+          {training.map((item) => (
+            <Entry key={item.title} item={item} label="Training" />
+          ))}
+        </ul>
+      </Reveal>
+    </Section>
+  );
+}

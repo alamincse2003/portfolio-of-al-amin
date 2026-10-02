@@ -1,53 +1,105 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
-  --font-serif: var(--font-serif);
-  --font-script: var(--font-script);
-
-  --color-surface: var(--color-surface);
-  --color-surface-raised: var(--color-surface-raised);
-  --color-border: var(--color-border);
-  --color-text-primary: var(--color-text-primary);
-  --color-text-secondary: var(--color-text-secondary);
-
-  --color-accent: var(--color-accent);
-  --color-accent-strong: var(--color-accent-strong);
-  --color-accent-soft: var(--color-accent-soft);
-}
-
-/* ─── Design Tokens ─────────────────────────────── */
+/* ─── Design tokens ──────────────────────────────────────────
+   Raw values live on :root / .dark and are mapped to Tailwind
+   colors once below, so utilities like bg-surface follow the theme. */
 :root {
-  /* Surfaces */
-  --color-surface:        #fafaf9; /* stone-50 */
-  --color-surface-raised: #f4f4f5; /* zinc-100 */
-  --color-border:         #e4e4e7; /* zinc-200 */
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --subtle: #f4f4f5;
+  --line: #e4e4e7;
+  --line-strong: #d4d4d8;
+  --fg: #18181b;
+  --muted: #52525b;
+  --faint: #71717a;
 
-  /* Text */
-  --color-text-primary:   #18181b; /* zinc-900 */
-  --color-text-secondary: #71717a; /* zinc-500 */
+  --accent: #b45309;
+  --accent-hover: #92400e;
+  --accent-fg: #ffffff;
+  --accent-soft: #fef3c7;
+  --accent-text: #b45309;
 
-  /* Accent — editor's ink (manuscript correction mark) */
-  --color-accent:        #b45309; /* amber-700 */
-  --color-accent-strong: #92400e; /* amber-800, hover/active */
-  --color-accent-soft:   #fef3c7; /* amber-100, soft badge fill */
+  color-scheme: light;
 }
 
 .dark {
-  --color-surface:        #18181b; /* zinc-900 */
-  --color-surface-raised: #27272a; /* zinc-800 */
-  --color-border:         #3f3f46; /* zinc-700 */
+  --bg: #0a0a0b;
+  --surface: #131315;
+  --subtle: #1c1c1f;
+  --line: #27272a;
+  --line-strong: #3f3f46;
+  --fg: #fafafa;
+  --muted: #a1a1aa;
+  --faint: #8b8b94;
 
-  --color-text-primary:   #fafafa; /* zinc-50 */
-  --color-text-secondary: #a1a1aa; /* zinc-400 */
+  --accent: #f59e0b;
+  --accent-hover: #fbbf24;
+  --accent-fg: #18181b;
+  --accent-soft: rgb(245 158 11 / 0.12);
+  --accent-text: #fbbf24;
 
-  /* Accent — editor's ink (manuscript correction mark) */
-  --color-accent:        #f59e0b; /* amber-500, brighter for dark bg */
-  --color-accent-strong: #fbbf24; /* amber-400, hover/active */
-  --color-accent-soft:   rgba(245, 158, 11, 0.12); /* translucent tint */
+  color-scheme: dark;
 }
 
-/* ─── Smooth section transitions ─────────────────── */
-section {
-  scroll-margin-top: 80px;
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-fg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

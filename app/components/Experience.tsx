@@ -1,71 +1,78 @@
-"use client";
-import { motion } from "framer-motion";
-import { experiences } from "../data/experiences";
-import { Briefcase } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import Section from "./ui/Section";
+import { TagList } from "./ui/Tag";
+import Reveal from "./Reveal";
+import { experience } from "../data/experience";
 
 export default function Experience() {
   return (
-    <section
-      id="experiences"
-      className="py-12 sm:py-16 bg-surface"
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section Title */}
-        <h2 className="font-serif text-2xl sm:text-3xl text-center mb-8 sm:mb-12 text-zinc-900 dark:text-zinc-100">
-          Experience
-        </h2>
-
-        {/* Timeline */}
-        <div className="space-y-4 sm:space-y-6">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              {/* Card */}
-              <div className="bg-surface-raised border border-border rounded-xl shadow-sm p-4 sm:p-6 hover:shadow-md hover:border-accent/40 transition-all duration-300">
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="p-2 bg-surface rounded-lg">
-                    <Briefcase className="w-5 h-5 text-zinc-900 dark:text-zinc-300" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-                      {exp.role}
-                    </h3>
-                    <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 italic">
-                      {exp.company} | <span>{exp.duration}</span>
-                    </p>
-                  </div>
-                </div>
-
-                {/* Impact row — lead with outcomes */}
-                {exp.impact && (
-                  <ul className="space-y-1.5 mb-4">
-                    {exp.impact.map((item, i) => (
-                      <li
-                        key={i}
-                        className="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-100 pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-accent"
+    <Section id="experience" eyebrow="Experience" title="Where I've worked" className="border-y border-line bg-surface">
+      <div className="space-y-16">
+        {experience.map((job) => {
+          const first = job.roles[job.roles.length - 1];
+          const latest = job.roles[0];
+          return (
+            <Reveal key={job.company}>
+              <article className="grid gap-6 md:grid-cols-[14rem_1fr] md:gap-12">
+                <header>
+                  <h3 className="text-xl font-semibold tracking-tight text-fg">
+                    {job.url ? (
+                      <a
+                        href={job.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 transition-colors hover:text-accent-text"
                       >
+                        {job.company}
+                        <ArrowUpRight className="h-4 w-4" aria-hidden />
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : (
+                      job.company
+                    )}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted">{job.location}</p>
+                  <p className="mt-1 font-mono text-xs text-faint">
+                    {first.start} — {latest.end}
+                  </p>
+                </header>
+
+                <div>
+                  <ol className="mb-7 space-y-4 border-l border-line pl-6">
+                    {job.roles.map((role, i) => (
+                      <li key={role.title} className="relative">
+                        <span
+                          aria-hidden
+                          className={`absolute -left-[29.5px] top-1.5 h-2.5 w-2.5 rounded-full ring-4 ring-surface ${
+                            i === 0 ? "bg-accent" : "bg-line-strong"
+                          }`}
+                        />
+                        <p className="font-semibold text-fg">{role.title}</p>
+                        <p className="mt-0.5 font-mono text-xs text-faint">
+                          {role.start} — {role.end}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+
+                  <ul className="space-y-3 text-[15px] leading-relaxed text-muted">
+                    {job.highlights.map((item) => (
+                      <li key={item} className="relative pl-5">
+                        <span aria-hidden className="absolute left-0 top-[0.8em] h-px w-2.5 bg-accent" />
                         {item}
                       </li>
                     ))}
                   </ul>
-                )}
 
-                {/* Supporting detail — demoted */}
-                <ul className="list-disc list-inside text-sm text-zinc-500 dark:text-zinc-400 space-y-1 ml-2 pt-3 border-t border-border">
-                  {exp.details.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                  <div className="mt-7">
+                    <TagList items={job.tech} label="Technologies used" />
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          );
+        })}
       </div>
-    </section>
+    </Section>
   );
 }

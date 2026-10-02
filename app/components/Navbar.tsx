@@ -1,126 +1,143 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FiMenu, FiX } from "react-icons/fi";
-import DarkModeToggler from "./DarkModeToggler";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
+import { navLinks, site } from "../data/site";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 16);
+      if (window.scrollY < 200) setActive("");
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = [
-    { name: "About", href: "#about" },
-    { name: "Experience", href: "#experiences" },
-    { name: "Projects", href: "#projects" },
-    { name: "Notes", href: "#notes" },
-    { name: "Skills", href: "#skills" },
-  ];
+  // Highlight the link for the section currently in the middle of the viewport.
+  useEffect(() => {
+    const sections = navLinks
+      .map(({ href }) => document.querySelector<HTMLElement>(href))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false);
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [isOpen]);
+
+  const close = () => setIsOpen(false);
+  const solid = scrolled || isOpen;
 
   return (
-    <motion.nav
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-        scrolled
-          ? "bg-surface/90 backdrop-blur-sm border-b border-border"
-          : "bg-transparent"
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        solid ? "border-line bg-bg/85 backdrop-blur-md" : "border-transparent"
       }`}
     >
-      <div className="max-w-4xl w-full mx-auto px-6 py-4 flex justify-between items-center">
-        <a
-          href="#home"
-          className="text-sm font-medium text-zinc-800 dark:text-zinc-200 tracking-wide"
-        >
-          Al Amin
+      <nav aria-label="Main" className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+        <a href="#top" className="flex items-center gap-2.5 font-semibold tracking-tight text-fg" onClick={close}>
+          <span
+            aria-hidden
+            className="flex h-8 w-8 items-center justify-center rounded-lg bg-fg font-mono text-xs font-bold text-bg"
+          >
+            AA
+          </span>
+          {site.name}
         </a>
 
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-7">
-          {links.map((link, index) => (
-            <a
-              key={index}
-              href={link.href}
-              className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-            >
-              {link.name}
-            </a>
+        <ul className="hidden items-center gap-1 md:flex">
+          {navLinks.map(({ label, href }) => (
+            <li key={href}>
+              <a
+                href={href}
+                aria-current={active === href ? "true" : undefined}
+                className={`rounded-lg px-3 py-2 text-sm transition-colors hover:text-fg ${
+                  active === href ? "text-fg" : "text-muted"
+                }`}
+              >
+                {label}
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5">
+          <ThemeToggle />
           <a
-            href="/images/resume/Al Amin_Frontend_Developer_Resume.pdf"
-            download="Al_Amin_Frontend_Developer_Resume.pdf"
-            className="hidden lg:inline text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            href={site.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden h-9 items-center rounded-lg border border-line-strong px-3.5 text-sm font-medium text-fg transition-colors hover:bg-subtle sm:inline-flex"
           >
-            Resume
-          </a>
-          <DarkModeToggler />
-          <a
-            href="#contact"
-            className="hidden sm:inline-flex items-center px-4 py-1.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-full text-sm font-medium hover:bg-zinc-700 dark:hover:bg-white transition-colors"
-          >
-            Contact
+            Resume<span className="sr-only"> (PDF, opens in a new tab)</span>
           </a>
           <button
-            className="lg:hidden w-8 h-8 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            type="button"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-fg hover:bg-subtle md:hidden"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
           >
-            {isOpen ? <FiX className="w-4 h-4" /> : <FiMenu className="w-4 h-4" />}
+            {isOpen ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-surface border-b border-border overflow-hidden"
-          >
-            {links.map((link, index) => (
-              <motion.a
-                key={index}
-                href={link.href}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.04 }}
-                className="block px-6 py-3 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </motion.a>
+      <div
+        id="mobile-menu"
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out md:hidden ${
+          isOpen ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0"
+        }`}
+        inert={!isOpen}
+      >
+        <div className="overflow-hidden">
+          <ul className="space-y-1 px-4 pb-4 pt-1 sm:px-6">
+            {navLinks.map(({ label, href }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  onClick={close}
+                  className="block rounded-lg px-3 py-2.5 text-[15px] text-muted transition-colors hover:bg-subtle hover:text-fg"
+                >
+                  {label}
+                </a>
+              </li>
             ))}
-            <a
-              href="/images/resume/Al Amin_Frontend_Developer_Resume.pdf"
-              download="Al_Amin_Frontend_Developer_Resume.pdf"
-              className="block px-6 py-3 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900"
-              onClick={() => setIsOpen(false)}
-            >
-              Resume
-            </a>
-            <a
-              href="#contact"
-              className="block px-6 py-3 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            <li className="pt-2 sm:hidden">
+              <a
+                href={site.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={close}
+                className="flex h-11 items-center justify-center rounded-lg border border-line-strong text-[15px] font-medium text-fg"
+              >
+                Resume (PDF)
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
   );
 }

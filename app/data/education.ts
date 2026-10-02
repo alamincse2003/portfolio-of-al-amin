@@ -1,20 +1,21 @@
-export const education = [
+import type { EducationItem } from "../types";
+
+export const education: EducationItem[] = [
   {
-    degree: "Diploma in Computer Engineering",
+    title: "Diploma in Computer Science & Engineering",
     institution: "Shariatpur Polytechnic Institute",
-    duration: "2019 - 2023",
-    details: [
-      "CGPA: 3.79/4.00",
-      "Relevant Coursework: Computer Fundamental, Programming, Web Development",
-    ],
+    start: "Sep 2019",
+    end: "Dec 2023",
+    details: ["CGPA 3.79 / 4.00"],
   },
-  // {
-  //   degree: "Spoken English",
-  //   institution: "Rahat English Care",
-  //   duration: "June 2025 - Present",
-  //   details: [
-  //     "Speaking, Listening, Writing practice",
-  //     "Focus on professional communication",
-  //   ],
-  // },
+];
+
+export const training: EducationItem[] = [
+  {
+    title: "Web Design & Development",
+    institution: "Programming Hero",
+    start: "Jan 2023",
+    end: "Jun 2023",
+    link: { label: "View certificate", href: "/images/certificate/certificate_student.pdf" },
+  },
 ];

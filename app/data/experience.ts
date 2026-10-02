@@ -1,36 +1,22 @@
-export const experiences = [
+import type { Experience } from "../types";
+
+export const experience: Experience[] = [
   {
-    role: "Frontend Engineer",
-    company: "NidusLab - USA",
-    duration: "April 2025 - Present",
-    impact: [
-      "Shipped 3 production dashboards (Employer, Job Seeker, Admin) live at nidusjob.com",
-      "Built the auth layer (JWT, Google OAuth, OTP) securing every protected route in the platform",
-      "Delivered real-time chat and notifications over WebSockets, used daily across employer and job-seeker accounts",
+    company: "NidusLab",
+    location: "USA",
+    url: "https://nidusjob.com/",
+    roles: [
+      { title: "Junior Software Engineer", start: "Sep 2026", end: "Present" },
+      { title: "Frontend Engineer", start: "Apr 2025", end: "Sep 2026" },
     ],
-    details: [
-      "Developed secure authentication and authorization flows including JWT tokens, Google OAuth, OTP verification, and protected route management.",
-      "Developed Employer Dashboard with job posting workflows, applicant pipeline management, and company profile management.",
-      "Integrated multiple AI-powered features including resume builder, CV parsing, job recommendations, and cover letter generation via REST APIs.",
-      "Implementing Authentication & Authorization flows (login, signup, protected routes)",
-      "Built real-time chat and notification system using WebSockets with unread message tracking and infinite scroll pagination.",
-      "Managed server state using TanStack React Query, improving API performance and caching across the application.",
+    highlights: [
+      "Built the Employer, Job Seeker and Admin dashboards of NidusJob, an AI-powered job platform live at nidusjob.com.",
+      "Implemented authentication and authorization — JWT, Google OAuth, OTP verification and protected routes — including token expiry and session persistence handling.",
+      "Delivered real-time chat and notifications over WebSockets with unread tracking and infinite-scroll pagination.",
+      "Integrated AI features over REST APIs — resume builder, CV parsing, job recommendations and cover letter generation — with error handling and fallback UI.",
+      "Managed server state with TanStack Query, using caching and query invalidation to keep data in sync across dashboards.",
       "Implemented subscription and credit-based feature gating integrated with local payment gateways.",
     ],
+    tech: ["React", "TypeScript", "Next.js", "TanStack Query", "Chakra UI", "Tailwind CSS", "WebSockets", "REST APIs"],
   },
-  // {
-  //   role: "Junior Web Developer",
-  //   company: "NEXABD",
-  //   duration: "January 2025 - July 2025",
-  //   details: [
-  //     "Working on a large-scale AI-integrated SaaS job platform that connects recruiters and job  seekers.",
-  //     "Building modern, scalable UI using React.js, TypeScript, and Chakra UI.",
-  //     "Converting Figma designs into pixel-perfect, responsive components.",
-  //     "Implementing Authentication & Authorization flows (login, signup, protected routes).",
-  //     "Integrating Python-based REST APIs for job posting, user profiles, and application systems.",
-  //     "Collaborating with backend and product teams to deliver features in an agile environment.",
-  //     "Improving performance, reusability, and maintainability of frontend components.",
-  //     "Gaining real-world experience in SaaS product development, AI feature integration, and production-level code practices.",
-  //   ],
-  // },
 ];

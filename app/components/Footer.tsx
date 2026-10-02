@@ -1,158 +1,21 @@
-"use client";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp } from "react-icons/fa";
+import Container from "./ui/Container";
+import SocialLinks from "./ui/SocialLinks";
+import { site } from "../data/site";
 
-const Footer = () => {
-  const [showButton, setShowButton] = useState(false);
-
-  // Scroll to top button visibility
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const links = [
-    { name: "About", href: "#about" },
-    { name: "Experience", href: "#experiences" },
-    { name: "Projects", href: "#projects" },
-    { name: "Notes", href: "#notes" },
-    { name: "Skills", href: "#skills" },
-    { name: "Education", href: "#education" },
-    { name: "Certifications", href: "#certifications" },
-    { name: "Contact", href: "#contact" },
-  ];
-
+export default function Footer() {
   return (
-    <footer className="bg-surface border-t border-border py-12 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Main Content */}
-        <div className="text-center mb-8">
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="font-script text-3xl text-zinc-900 dark:text-zinc-100 mb-2"
-          >
-            Al Amin
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-zinc-600 dark:text-zinc-400"
-          >
-            Frontend Developer | Building exceptional web experiences
-          </motion.p>
+    <footer className="border-t border-line">
+      <Container className="flex flex-col items-center justify-between gap-4 py-8 text-sm text-muted sm:flex-row">
+        <p>
+          © {new Date().getFullYear()} {site.name} · {site.title}
+        </p>
+        <div className="flex items-center gap-4">
+          <SocialLinks />
+          <a href="#top" className="rounded-lg px-2 py-2 transition-colors hover:text-fg">
+            Back to top ↑
+          </a>
         </div>
-
-        {/* Social Links */}
-        <motion.div
-          className="flex justify-center gap-4 mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <motion.a
-            href="https://github.com/alamincse2003"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-3 bg-surface-raised border border-border rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-accent hover:border-accent/50 transition-all duration-300"
-          >
-            <FaGithub className="w-5 h-5" />
-          </motion.a>
-          <motion.a
-            href="https://www.linkedin.com/in/alamincse2003/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-3 bg-surface-raised border border-border rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-accent hover:border-accent/50 transition-all duration-300"
-          >
-            <FaLinkedin className="w-5 h-5" />
-          </motion.a>
-          <motion.a
-            href="mailto:mdalamincse2003@gmail.com"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-3 bg-surface-raised border border-border rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-accent hover:border-accent/50 transition-all duration-300"
-          >
-            <FaEnvelope className="w-5 h-5" />
-          </motion.a>
-        </motion.div>
-
-        {/* Navigation Links */}
-        <motion.ul
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8"
-        >
-          {links.map((link, index) => (
-            <li key={index}>
-              <a
-                href={link.href}
-                className="text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-300 transition-colors duration-300"
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </motion.ul>
-
-        {/* Divider */}
-        <div className="border-t border-border mb-6"></div>
-
-        {/* Copyright */}
-        <motion.p
-          className="text-center text-sm text-zinc-600 dark:text-zinc-400"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          © {new Date().getFullYear()}{" "}
-          <span className="font-semibold text-zinc-900 dark:text-zinc-100">
-            Al Amin
-          </span>
-          . All rights reserved.
-        </motion.p>
-      </div>
-
-      {/* Back to Top Button */}
-      {showButton && (
-        <motion.button
-          onClick={scrollToTop}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed bottom-6 right-6 bg-zinc-900 hover:bg-zinc-700 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 p-3 sm:p-4 rounded-full shadow-lg transition-all duration-200 z-50"
-          whileHover={{ scale: 1.1, y: -2 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Scroll to top"
-        >
-          <FaArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
-        </motion.button>
-      )}
+      </Container>
     </footer>
   );
-};
-
-export default Footer;
+}

@@ -1,130 +1,99 @@
-export const projects = [
+import type { Project } from "../types";
+
+export const featuredProjects: Project[] = [
   {
-    id: 1,
-    title: "AI-Powered NidusJob",
+    id: "nidusjob",
+    title: "NidusJob",
     type: "Company",
-    description:
-      "An AI-powered job portal with role-based dashboards for Employers, Job Seekers, and Admins. Built the complete frontend with secure authentication (JWT, OAuth, OTP), real-time data sync using TanStack React Query, and optimized performance through lazy loading and pagination.",
-    outcome:
-      "Shipped 3 distinct dashboards (Employer, Job Seeker, Admin) to production, live at nidusjob.com.",
+    summary:
+      "AI-powered job platform with role-based dashboards for employers, job seekers and admins.",
     image: "/images/projects/nidusjob-hero.webp",
-    tech: [
-      "React",
-      "TypeScript",
-      "Chakra UI",
-      "Python",
-      "Django",
-      "Postgresql",
+    imageAlt: "NidusJob landing page with AI-powered job search",
+    role: "Frontend — authentication, dashboards, real-time features and AI integrations",
+    features: [
+      "Secure auth with JWT, Google OAuth and OTP, including token expiry and session persistence",
+      "Cross-dashboard state sync with TanStack Query caching and invalidation",
+      "AI resume builder, CV parsing and recommendations with error handling and fallback UI",
+      "Lazy loading and pagination for large job and applicant lists",
     ],
+    outcome: "Three dashboards shipped to production at nidusjob.com.",
+    stack: ["React", "TypeScript", "Chakra UI", "TanStack Query", "WebSockets"],
+    teamStack: ["Python", "Django", "PostgreSQL"],
     live: "https://nidusjob.com/",
-    code: null,
-    caseStudy: {
-      problem:
-        "[TODO: what gap or requirement NidusJob needed to solve — e.g. why three separate role-based dashboards were needed and what the constraint was before this existed]",
-      approach:
-        "[TODO: key technical decisions — why JWT/OAuth/OTP for auth, why TanStack React Query for data sync, why lazy loading/pagination mattered for this product specifically]",
-      outcome:
-        "Shipped 3 distinct dashboards (Employer, Job Seeker, Admin) to production, live at nidusjob.com.",
-    },
   },
   {
-    id: 2,
+    id: "career-college",
     title: "Career College",
     type: "Company",
-    description:
-      "A multi-page educational platform frontend with a fully designed landing page (Hero, Partners, Popular Courses, Career Journey), Our Courses, Course Details, Become a Partner, Instructor, Instructor Details, and About Us pages.",
-    outcome: "9 fully responsive pages built from Figma, shipped to production.",
+    summary:
+      "Multi-page educational platform covering courses, instructors and partner onboarding.",
     image: "/images/projects/career-college.webp",
-    tech: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Python",
-      "Django",
-      "Postgresql",
+    imageAlt: "Career College landing page with course highlights",
+    role: "Frontend — built every page from the Figma designs",
+    features: [
+      "Landing page with hero, partners, popular courses and career journey sections",
+      "Course listing and course details pages",
+      "Instructor, instructor details, become-a-partner and about pages",
     ],
+    outcome: "9 fully responsive pages built from Figma and shipped to production.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    teamStack: ["Python", "Django", "PostgreSQL"],
     live: "https://career-college-frontend.vercel.app/",
-    code: null,
-    caseStudy: {
-      problem:
-        "[TODO: what the client needed — e.g. why 9 distinct pages, what the Figma handoff/timeline constraint looked like]",
-      approach:
-        "[TODO: key technical decisions — why Next.js for this build, how the Figma-to-responsive-page conversion was structured, any reuse/component strategy across the 9 pages]",
-      outcome: "9 fully responsive pages built from Figma, shipped to production.",
-    },
   },
   {
-    id: 3,
+    id: "smart-appointment",
     title: "Smart Appointment & Queue Manager",
     type: "Personal",
-    description:
-      "A full-stack booking system with real-time queue tracking, role-based dashboards for admin and clients, and automated appointment reminders.",
-    outcome: "Full-stack build, solo — real-time queue state synced across admin and client views.",
+    summary:
+      "Full-stack booking system with real-time queue tracking and automated appointment reminders.",
     image: "/images/projects/smart-appointment.webp",
-    tech: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
+    imageAlt: "Smart Appointment dashboard with daily queue stats and recent activity",
+    role: "Solo full-stack build — frontend, API and database",
+    features: [
+      "Real-time queue state synced across admin and client views",
+      "Role-based dashboards for admins and clients",
+      "Automated appointment reminders",
     ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
     live: "https://smart-appointment-frontend-olive.vercel.app/dashboard",
     code: "https://github.com/alamincse2003/smart-appointment-queue-manager",
-    caseStudy: {
-      problem:
-        "[TODO: what real-world booking/queue problem this was built to solve, and why a full-stack solo build rather than using an existing scheduling tool]",
-      approach:
-        "[TODO: key technical decisions — how real-time queue sync between admin/client views was implemented, why Node/Express/MongoDB, how automated reminders were handled]",
-      outcome:
-        "Full-stack build, solo — real-time queue state synced across admin and client views.",
-    },
   },
+];
+
+export const otherProjects: Project[] = [
   {
-    id: 4,
+    id: "job-portal",
     title: "Job Portal Web App",
     type: "Personal",
-    description:
-      "A responsive job-listing platform with category filtering, search, and a clean card-based UI — built with React and Context API for global state.",
-    outcome: "Global state handled with Context API, no external state library.",
+    summary:
+      "Job-listing app with category filtering and search, using Context API for global state.",
     image: "/images/projects/job-portal-web-app.webp",
-    tech: ["React", "React Router", "Context API", "Tailwind CSS"],
+    imageAlt: "Job Portal web app listing page",
+    stack: ["React", "React Router", "Context API", "Tailwind CSS"],
     live: "https://job-portal-web-app-ashy.vercel.app",
     code: "https://github.com/alamincse2003/job-portal-web-app",
   },
   {
-    id: 5,
+    id: "expense-tracker",
     title: "Smart Expense Tracker",
     type: "Personal",
-    description:
-      "An expense management tool with interactive Chart.js visualisations, PDF export via jsPDF, and persistent storage using localStorage.",
-    outcome: "Data visualisation and PDF export built with zero backend.",
+    summary:
+      "Expense tracker with Chart.js visualisations, PDF export and localStorage persistence — no backend.",
     image: "/images/projects/smart-tracker-expense-app.webp",
-    tech: ["JavaScript", "Tailwind CSS", "Chart.js", "jsPDF", "LocalStorage"],
+    imageAlt: "Smart Expense Tracker with spending charts",
+    stack: ["JavaScript", "Chart.js", "jsPDF", "Tailwind CSS"],
     live: "https://smart-expense-tracker-web-app.vercel.app",
     code: "https://github.com/alamincse2003/Smart-Expense-Tracker-Web-App",
   },
   {
-    id: 6,
-    title: "QuickMart — E-commerce",
-    type: "Personal",
-    description:
-      "A fully functional e-commerce storefront with cart management, product filtering, and a checkout flow — powered by React Hooks and Context API.",
-    outcome: "End-to-end cart-to-checkout flow, state-managed with React Hooks.",
-    image: "/images/projects/quickmark.webp",
-    tech: ["React", "Context API", "React Hooks", "Bootstrap"],
-    live: "https://quickmart-demo.surge.sh",
-    code: "https://github.com/alamincse2003/QuickMart",
-  },
-  {
-    id: 7,
+    id: "extension-lab",
     title: "Extension Lab",
     type: "Client",
-    description:
-      "A client website for a browser-extension studio. Pixel-perfect conversion of a Figma design to a responsive, vanilla HTML/CSS/JS landing page.",
-    outcome: "Delivered pixel-perfect to spec, no framework overhead.",
-    image: "/images/projects/extention-lab.webp",
-    tech: ["HTML5", "CSS3", "JavaScript"],
+    summary:
+      "Responsive landing page for a browser-extension studio, converted pixel-perfect from Figma.",
+    image: "/images/projects/extension-lab.webp",
+    imageAlt: "Extension Lab landing page",
+    stack: ["HTML", "CSS", "JavaScript"],
     live: "https://extension-lab-xi.vercel.app/",
     code: "https://github.com/alamincse2003/extension-lab",
   },

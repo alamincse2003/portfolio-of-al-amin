@@ -1,221 +1,155 @@
-"use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
-import { projects } from "../data/projects";
-import { FiCode, FiExternalLink, FiChevronDown } from "react-icons/fi";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
+import Section from "./ui/Section";
+import ButtonLink from "./ui/ButtonLink";
+import { TagList } from "./ui/Tag";
+import Reveal from "./Reveal";
+import { featuredProjects, otherProjects } from "../data/projects";
+import type { Project } from "../types";
 
-const CASE_STUDY_IDS = [1, 2, 3];
+const iconLink =
+  "flex h-9 w-9 items-center justify-center rounded-lg text-muted transition-colors hover:bg-subtle hover:text-fg";
 
-const caseStudies = projects.filter((p) => CASE_STUDY_IDS.includes(p.id));
-const moreProjects = projects.filter((p) => !CASE_STUDY_IDS.includes(p.id));
-
-const TechBadges = ({ tech }) => (
-  <div className="flex flex-wrap gap-1.5">
-    {tech.map((t) => (
-      <span
-        key={t}
-        className="font-mono text-xs bg-surface-raised text-zinc-700 dark:text-zinc-300 border border-border px-2 py-1 rounded-md"
-      >
-        {t}
-      </span>
-    ))}
-  </div>
-);
-
-const ProjectLinks = ({ live, code }) => (
-  <div className="flex gap-2.5">
-    <a
-      href={live}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent hover:bg-accent-strong text-white rounded-lg transition-colors duration-200 text-xs font-semibold"
-    >
-      <FiExternalLink className="w-3.5 h-3.5" /> Live Demo
-    </a>
-    {code && (
-      <a
-        href={code}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 px-4 py-2 border border-border text-zinc-800 dark:text-zinc-200 hover:border-accent hover:text-accent rounded-lg transition-all duration-200 text-xs font-semibold"
-      >
-        <FiCode className="w-3.5 h-3.5" /> Source
-      </a>
-    )}
-  </div>
-);
-
-const CaseStudy = ({ project, index }) => {
-  const [approachOpen, setApproachOpen] = useState(false);
-
+function FeaturedProject({ project, flip }: { project: Project; flip: boolean }) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-10 py-10 border-b border-border last:border-0"
-    >
-      {/* Image */}
-      <div className="md:col-span-2">
-        <div className="relative w-full h-48 md:h-full min-h-[180px] rounded-xl overflow-hidden border border-border">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover object-top"
-          />
-          <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-black/40 text-white backdrop-blur-sm">
-            {project.type}
-          </span>
-        </div>
-      </div>
-
-      {/* Text */}
-      <div className="md:col-span-3">
-        <h3 className="font-serif text-xl sm:text-2xl text-zinc-900 dark:text-zinc-100 mb-3">
-          {project.title}
-        </h3>
-
-        <div className="space-y-3 mb-4">
-          <div>
-            <p className="font-serif italic text-sm text-accent mb-1">The problem</p>
-            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              {project.caseStudy.problem}
-            </p>
+    <Reveal>
+      <article className="group grid overflow-hidden rounded-xl border border-line bg-surface transition-colors hover:border-line-strong md:grid-cols-2">
+        <div
+          className={`flex items-center border-b border-line bg-subtle p-4 sm:p-6 md:border-b-0 ${
+            flip ? "md:order-2 md:border-l" : "md:border-r"
+          }`}
+        >
+          <div className="relative aspect-[2/1] w-full overflow-hidden rounded-lg border border-line bg-surface shadow-sm">
+            <Image
+              src={project.image}
+              alt={project.imageAlt}
+              fill
+              sizes="(min-width: 1024px) 448px, (min-width: 768px) 45vw, 100vw"
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+            />
           </div>
+        </div>
 
-          <div>
-            <button
-              onClick={() => setApproachOpen(!approachOpen)}
-              className="flex items-center gap-1.5 font-serif italic text-sm text-accent mb-1 cursor-pointer"
-            >
-              The approach
-              <FiChevronDown
-                className={`w-3.5 h-3.5 transition-transform ${approachOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-            {approachOpen && (
-              <motion.p
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                transition={{ duration: 0.25 }}
-                className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed overflow-hidden"
-              >
-                {project.caseStudy.approach}
-              </motion.p>
+        <div className="flex flex-col p-6 sm:p-8">
+          <p className="mb-3 font-mono text-xs uppercase tracking-wider text-faint">{project.type} project</p>
+          <h3 className="text-xl font-semibold tracking-tight text-fg sm:text-2xl">{project.title}</h3>
+          <p className="mt-2 leading-relaxed text-muted">{project.summary}</p>
+
+          {project.role && (
+            <p className="mt-4 text-sm leading-relaxed text-muted">
+              <span className="font-medium text-fg">My role: </span>
+              {project.role}
+            </p>
+          )}
+
+          {project.features && (
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted">
+              {project.features.map((feature) => (
+                <li key={feature} className="relative pl-4">
+                  <span aria-hidden className="absolute left-0 top-[0.6em] h-1 w-1 rounded-full bg-accent" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {project.outcome && (
+            <p className="mt-5 rounded-lg bg-accent-soft px-3.5 py-2.5 text-sm text-fg">{project.outcome}</p>
+          )}
+
+          <div className="mt-6 space-y-2.5">
+            <TagList items={project.stack} label="Technologies I used" />
+            {project.teamStack && (
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs text-faint">Backend by team:</span>
+                <TagList items={project.teamStack} muted label="Backend built by the team" />
+              </div>
             )}
           </div>
 
-          <div>
-            <p className="font-serif italic text-sm text-accent mb-1">The outcome</p>
-            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              {project.caseStudy.outcome}
-            </p>
+          <div className="mt-auto flex flex-wrap gap-2.5 pt-7">
+            <ButtonLink href={project.live} external size="sm">
+              <ExternalLink className="h-4 w-4" aria-hidden />
+              Live site
+            </ButtonLink>
+            {project.code && (
+              <ButtonLink href={project.code} external size="sm" variant="secondary">
+                <FaGithub className="h-4 w-4" aria-hidden />
+                Source
+              </ButtonLink>
+            )}
           </div>
         </div>
-
-        <div className="mb-4">
-          <TechBadges tech={project.tech} />
-        </div>
-
-        <ProjectLinks live={project.live} code={project.code} />
-      </div>
-    </motion.article>
+      </article>
+    </Reveal>
   );
-};
+}
 
-const MoreProjectRow = ({ project, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 12 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.4, delay: index * 0.06 }}
-    className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 py-5 border-b border-border last:border-0"
-  >
-    <div className="sm:w-56 shrink-0">
-      <h4 className="font-semibold text-zinc-900 dark:text-zinc-100">{project.title}</h4>
-      <span className="text-xs text-zinc-500 dark:text-zinc-400">{project.type}</span>
-    </div>
-    <p className="flex-1 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-      {project.description}
-    </p>
-    <div className="flex items-center gap-3 shrink-0">
-      <a
-        href={project.live}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`${project.title} live demo`}
-        className="text-zinc-500 dark:text-zinc-400 hover:text-accent transition-colors"
-      >
-        <FiExternalLink className="w-4 h-4" />
-      </a>
-      {project.code && (
-        <a
-          href={project.code}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${project.title} source code`}
-          className="text-zinc-500 dark:text-zinc-400 hover:text-accent transition-colors"
-        >
-          <FiCode className="w-4 h-4" />
-        </a>
-      )}
-    </div>
-  </motion.div>
-);
-
-const Projects = () => {
+function OtherProject({ project }: { project: Project }) {
   return (
-    <section
-      id="projects"
-      className="py-16 sm:py-20 px-4 sm:px-6 md:px-12 lg:px-16 bg-surface"
+    <li
+      data-reveal
+      className="flex flex-col rounded-xl border border-line bg-surface p-5 transition-colors hover:border-line-strong"
     >
-      <div className="max-w-5xl mx-auto">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-10"
-        >
-          <h2 className="font-serif text-3xl sm:text-4xl text-zinc-900 dark:text-zinc-100 mb-3">
-            Selected Work
-          </h2>
-          <p className="text-zinc-500 dark:text-zinc-400 max-w-xl text-sm sm:text-base">
-            A closer look at three projects — the problem each one solved, how
-            I approached it, and what shipped.
-          </p>
-        </motion.div>
-
-        {/* Case studies */}
+      <div className="flex items-start justify-between gap-3">
         <div>
-          {caseStudies.map((project, index) => (
-            <CaseStudy key={project.id} project={project} index={index} />
-          ))}
+          <p className="font-mono text-xs uppercase tracking-wider text-faint">{project.type}</p>
+          <h4 className="mt-1 font-semibold text-fg">{project.title}</h4>
         </div>
-
-        {/* More projects */}
-        {moreProjects.length > 0 && (
-          <div className="mt-16">
-            <h3 className="font-serif text-xl text-zinc-900 dark:text-zinc-100 mb-2">
-              More projects
-            </h3>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2">
-              Smaller builds and client work.
-            </p>
-            <div>
-              {moreProjects.map((project, index) => (
-                <MoreProjectRow key={project.id} project={project} index={index} />
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="-mr-2 -mt-1 flex">
+          {project.code && (
+            <a
+              href={project.code}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${project.title} source code (opens in a new tab)`}
+              className={iconLink}
+            >
+              <FaGithub className="h-4 w-4" aria-hidden />
+            </a>
+          )}
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${project.title} live site (opens in a new tab)`}
+            className={iconLink}
+          >
+            <ArrowUpRight className="h-4 w-4" aria-hidden />
+          </a>
+        </div>
       </div>
-    </section>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{project.summary}</p>
+      <div className="mt-4">
+        <TagList items={project.stack} label="Technologies used" />
+      </div>
+    </li>
   );
-};
+}
 
-export default Projects;
+export default function Projects() {
+  return (
+    <Section
+      id="projects"
+      eyebrow="Projects"
+      title="Selected work"
+      description="Production work from NidusLab alongside projects I built on my own — what each one does and what I was responsible for."
+    >
+      <div className="space-y-6">
+        {featuredProjects.map((project, index) => (
+          <FeaturedProject key={project.id} project={project} flip={index % 2 === 1} />
+        ))}
+      </div>
+
+      <h3 className="mb-5 mt-16 text-lg font-semibold text-fg">Other projects</h3>
+      <Reveal>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {otherProjects.map((project) => (
+            <OtherProject key={project.id} project={project} />
+          ))}
+        </ul>
+      </Reveal>
+    </Section>
+  );
+}
