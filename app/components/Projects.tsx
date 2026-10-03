@@ -11,7 +11,13 @@ import type { Project } from "../types";
 const iconLink =
   "flex h-9 w-9 items-center justify-center rounded-lg text-muted transition-colors hover:bg-subtle hover:text-fg";
 
-function FeaturedProject({ project, flip }: { project: Project; flip: boolean }) {
+function FeaturedProject({
+  project,
+  flip,
+}: {
+  project: Project;
+  flip: boolean;
+}) {
   return (
     <Reveal>
       <article className="group grid overflow-hidden rounded-xl border border-line bg-surface transition-colors hover:border-line-strong md:grid-cols-2">
@@ -32,8 +38,12 @@ function FeaturedProject({ project, flip }: { project: Project; flip: boolean })
         </div>
 
         <div className="flex flex-col p-6 sm:p-8">
-          <p className="mb-3 font-mono text-xs uppercase tracking-wider text-faint">{project.type} project</p>
-          <h3 className="text-xl font-semibold tracking-tight text-fg sm:text-2xl">{project.title}</h3>
+          <p className="mb-3 font-mono text-xs uppercase tracking-wider text-faint">
+            {project.type} project
+          </p>
+          <h3 className="text-xl font-semibold tracking-tight text-fg sm:text-2xl">
+            {project.title}
+          </h3>
           <p className="mt-2 leading-relaxed text-muted">{project.summary}</p>
 
           {project.role && (
@@ -47,7 +57,10 @@ function FeaturedProject({ project, flip }: { project: Project; flip: boolean })
             <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted">
               {project.features.map((feature) => (
                 <li key={feature} className="relative pl-4">
-                  <span aria-hidden className="absolute left-0 top-[0.6em] h-1 w-1 rounded-full bg-accent" />
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-[0.6em] h-1 w-1 rounded-full bg-accent"
+                  />
                   {feature}
                 </li>
               ))}
@@ -55,7 +68,9 @@ function FeaturedProject({ project, flip }: { project: Project; flip: boolean })
           )}
 
           {project.outcome && (
-            <p className="mt-5 rounded-lg bg-accent-soft px-3.5 py-2.5 text-sm text-fg">{project.outcome}</p>
+            <p className="mt-5 rounded-lg bg-accent-soft px-3.5 py-2.5 text-sm text-fg">
+              {project.outcome}
+            </p>
           )}
 
           <div className="mt-6 space-y-2.5">
@@ -63,7 +78,11 @@ function FeaturedProject({ project, flip }: { project: Project; flip: boolean })
             {project.teamStack && (
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs text-faint">Backend by team:</span>
-                <TagList items={project.teamStack} muted label="Backend built by the team" />
+                <TagList
+                  items={project.teamStack}
+                  muted
+                  label="Backend built by the team"
+                />
               </div>
             )}
           </div>
@@ -74,7 +93,12 @@ function FeaturedProject({ project, flip }: { project: Project; flip: boolean })
               Live site
             </ButtonLink>
             {project.code && (
-              <ButtonLink href={project.code} external size="sm" variant="secondary">
+              <ButtonLink
+                href={project.code}
+                external
+                size="sm"
+                variant="secondary"
+              >
                 <FaGithub className="h-4 w-4" aria-hidden />
                 Source
               </ButtonLink>
@@ -94,7 +118,9 @@ function OtherProject({ project }: { project: Project }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="font-mono text-xs uppercase tracking-wider text-faint">{project.type}</p>
+          <p className="font-mono text-xs uppercase tracking-wider text-faint">
+            {project.type}
+          </p>
           <h4 className="mt-1 font-semibold text-fg">{project.title}</h4>
         </div>
         <div className="-mr-2 -mt-1 flex">
@@ -120,7 +146,9 @@ function OtherProject({ project }: { project: Project }) {
           </a>
         </div>
       </div>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{project.summary}</p>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
+        {project.summary}
+      </p>
       <div className="mt-4">
         <TagList items={project.stack} label="Technologies used" />
       </div>
@@ -134,15 +162,21 @@ export default function Projects() {
       id="projects"
       eyebrow="Projects"
       title="Selected work"
-      description="Production work from NidusLab alongside projects I built on my own — what each one does and what I was responsible for."
+      description="Production work from NidusLab alongside projects I built on my own  what each one does and what I was responsible for."
     >
       <div className="space-y-6">
         {featuredProjects.map((project, index) => (
-          <FeaturedProject key={project.id} project={project} flip={index % 2 === 1} />
+          <FeaturedProject
+            key={project.id}
+            project={project}
+            flip={index % 2 === 1}
+          />
         ))}
       </div>
 
-      <h3 className="mb-5 mt-16 text-lg font-semibold text-fg">Other projects</h3>
+      <h3 className="mb-5 mt-16 text-lg font-semibold text-fg">
+        Other projects
+      </h3>
       <Reveal>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {otherProjects.map((project) => (

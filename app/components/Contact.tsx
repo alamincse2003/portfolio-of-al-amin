@@ -8,7 +8,7 @@ import { site } from "../data/site";
 
 export default function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-title" className="py-20 md:py-28">
+    <section id="contact" aria-labelledby="contact-title" className="py-10 md:py-[50px]">
       <Container>
         <Reveal className="rounded-2xl border border-line bg-surface px-6 py-12 text-center sm:px-12 sm:py-16">
           <p
