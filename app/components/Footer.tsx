@@ -11,8 +11,11 @@ export default function Footer() {
         </p>
         <div className="flex items-center gap-4">
           <SocialLinks />
-          <a href="#top" className="rounded-lg px-2 py-2 transition-colors hover:text-fg">
-            Back to top ↑
+          <a
+            href="#top"
+            className="rounded-lg px-2 py-2 transition-colors hover:text-fg"
+          >
+            Backk to top ↑
           </a>
         </div>
       </Container>
