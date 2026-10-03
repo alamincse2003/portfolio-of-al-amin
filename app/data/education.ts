@@ -2,6 +2,13 @@ import type { EducationItem } from "../types";
 
 export const education: EducationItem[] = [
   {
+    title: "BSc in Computer Science and Engineering",
+    institution: "Uttara University",
+    start: "Sep 2026",
+    end: "Present",
+    details: ["Evening classes, alongside full-time work"],
+  },
+  {
     title: "Diploma in Computer Science & Engineering",
     institution: "Shariatpur Polytechnic Institute",
     start: "Sep 2019",
